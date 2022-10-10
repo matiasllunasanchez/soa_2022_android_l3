@@ -1,4 +1,10 @@
 package com.example.appsoa2;
 
-public class PrimaryActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class PrimaryActivity extends AppCompatActivity implements MainActivityContract.ViewMVP{
+    @Override
+    public void showResultOnLabel(String string) {
+
+    }
 }

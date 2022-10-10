@@ -1,6 +1,6 @@
 package com.example.appsoa2;
 
-public class Model implements Contract.ModelMVP {
+public class Model implements MainActivityContract.ModelMVP {
     // Extiende del contrato
 
 

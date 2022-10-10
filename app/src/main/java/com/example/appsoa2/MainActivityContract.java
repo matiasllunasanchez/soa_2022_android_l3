@@ -1,6 +1,6 @@
 package com.example.appsoa2;
 
-public interface Contract {
+public interface MainActivityContract {
     // El contrato es una buena practica
     // Es una interfaz de interfaces y sirve para decirme los metodos disponibles de cada capa.
 
@@ -18,7 +18,7 @@ public interface Contract {
         // Metodos propios del modelo que realizan procesos y llamadas a BD y demas cosas de regla de negocio
         // Pueden requerir de un presentador enviado por parametro para posteriormente realizar el feedback necesario hacia la vista
         // Con esto logro separar la logica del presentador, pudiendo reutilizar este metodo en varios presentadores.
-        void processDataGetResult(Contract.ModelMVP.OnSendToPresenter presenter);
+        void processDataGetResult(MainActivityContract.ModelMVP.OnSendToPresenter presenter);
     }
 
     interface PresenterMVP {

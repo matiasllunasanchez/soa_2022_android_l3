@@ -1,6 +1,5 @@
 package com.example.appsoa2;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,9 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements Contract.ViewMVP {
+public class MainActivity extends AppCompatActivity implements MainActivityContract.ViewMVP {
 
-    private Contract.PresenterMVP presenter;
+    private MainActivityContract.PresenterMVP presenter;
     private static final String TAG = "MainActivity";
     private TextView textView;
 
@@ -22,38 +21,47 @@ public class MainActivity extends AppCompatActivity implements Contract.ViewMVP 
     private View.OnClickListener btnListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            switch(view.getId()){
+            Intent intent;
+            switch (view.getId()) {
                 // El ID del elemento seleccionado desde la vista es recibido como parametro.
                 // Dependiendo de que boton fue seleccionado se hacen diferentes cosas o se tira error.
                 case R.id.buttonNext:
-                    Log.i(TAG,"Click en NEXT ");
+                    Log.i(TAG, "Click en NEXT ");
                     break;
                 case R.id.buttonSend:
-                    Log.i(TAG,"Click en SEND ");
+                    Log.i(TAG, "Click en SEND ");
                     presenter.onSendButtonClick();
                     break;
                 case R.id.buttonStartAct:
-                    Log.i(TAG,"Click en START ");
+                    Log.i(TAG, "Click en START ");
                     break;
                 case R.id.button_primary:
-                    Log.i(TAG,"Click en PRIMARY ");
+                    Log.i(TAG, "Click en PRIMARY ");
+                    try {
+                        Intent k = new Intent(MainActivity.this, PrimaryActivity.class);
+                        startActivity(k);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case R.id.button_secondary:
-                    Log.i(TAG,"Click en SECONDARY ");
+                    Log.i(TAG, "Click en SECONDARY ");
                     break;
                 default:
-                    Log.i(TAG,"Default de switch botones ");
-                    throw new IllegalStateException("Unexpected value "+ view.getId());
+                    Log.i(TAG, "Default de switch botones ");
+                    throw new IllegalStateException("Unexpected value " + view.getId());
             }
         }
     };
 
-    @Override
+    @Override // Este metodo lo dejamos fijo
     protected void onCreate(Bundle savedInstanceState) {
-        // Esto queda fijo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initialize(); // Aca metemos toda la logica necesaria para inicializar la vista
+    }
 
+    private void initialize() {
         // Se instancian los botones durante la creacion de la vista
         // Aca se le asigna a cierta instancia un id en la vista real.
         Button btnStart = findViewById(R.id.buttonStartAct);
@@ -84,8 +92,7 @@ public class MainActivity extends AppCompatActivity implements Contract.ViewMVP 
         presenter = new Presenter(this);
 
 
-
-        Log.i(TAG,"Paso al estado Createad");
+        Log.i(TAG, "Paso al estado Createad");
     }
 
     @Override
@@ -93,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements Contract.ViewMVP 
         // La vista sabe que su forma de mostrar el resultado es sobre un label de texto.
         // Entonces trata el string recibido y se lo asigna al input correspondiente.
         // En este caso hay un solo textLabel en la vista, por lo que se le asigna el resultado
-        Log.i(TAG,"Se ejecuta metodo para setear el string");
+        Log.i(TAG, "Se ejecuta metodo para setear el string");
         this.textView.setText(string);
     }
 
@@ -103,26 +110,26 @@ public class MainActivity extends AppCompatActivity implements Contract.ViewMVP 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(TAG,"Paso al estado Resumed");
+        Log.i(TAG, "Paso al estado Resumed");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i(TAG,"Paso al estado Stopped");
+        Log.i(TAG, "Paso al estado Stopped");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i(TAG,"Paso al estado Paused");
+        Log.i(TAG, "Paso al estado Paused");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i(TAG,"Paso al estado Restarted");
+        Log.i(TAG, "Paso al estado Restarted");
     }
 
 }
