@@ -1,4 +1,6 @@
-package com.example.appsoa2;
+package com.example.appsoa2.models;
+
+import com.example.appsoa2.contracts.MainActivityContract;
 
 public class Model implements MainActivityContract.ModelMVP {
     // Extiende del contrato

@@ -1,11 +1,14 @@
-package com.example.appsoa2;
+package com.example.appsoa2.presenters;
 
-public class Presenter implements MainActivityContract.ModelMVP.OnSendToPresenter, MainActivityContract.PresenterMVP {
+import com.example.appsoa2.contracts.MainActivityContract;
+import com.example.appsoa2.models.Model;
+
+public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPresenter, MainActivityContract.PresenterMVP {
 
     private MainActivityContract.ViewMVP mainView;
     private final MainActivityContract.ModelMVP model;
 
-    public Presenter(MainActivityContract.ViewMVP mainView){
+    public MainPresenter(MainActivityContract.ViewMVP mainView){
         // El presentador es el unico que tiene conocimiento de los dos (Vista y Modelo)
         // Cada vez que se crea requiere de una vista, y a su vez crea una nueva instancia del modelo.
         this.mainView = mainView;

@@ -1,4 +1,4 @@
-package com.example.appsoa2;
+package com.example.appsoa2.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.appsoa2.presenters.MainPresenter;
+import com.example.appsoa2.R;
+import com.example.appsoa2.contracts.MainActivityContract;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.ViewMVP {
 
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         */
 
         textView = findViewById(R.id.textView);
-        presenter = new Presenter(this);
+        presenter = new MainPresenter(this);
 
 
         Log.i(TAG, "Paso al estado Createad");

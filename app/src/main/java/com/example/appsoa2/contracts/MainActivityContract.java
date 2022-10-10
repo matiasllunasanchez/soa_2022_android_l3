@@ -1,4 +1,4 @@
-package com.example.appsoa2;
+package com.example.appsoa2.contracts;
 
 public interface MainActivityContract {
     // El contrato es una buena practica
