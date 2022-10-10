@@ -50,6 +50,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
                     break;
                 case R.id.button_secondary:
                     Log.i(TAG, "Click en SECONDARY ");
+                    try {
+                        Intent k = new Intent(MainActivity.this, SecondaryActivity.class);
+                        startActivity(k);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 default:
                     Log.i(TAG, "Default de switch botones ");
