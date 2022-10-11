@@ -46,6 +46,8 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
     private void initializeLabels(){
         txtLedState = findViewById(R.id.text_ledState);
         txtColorSelected = findViewById(R.id.text_ledColorSelected);
+        txtLedState.setText("ENCENDIDO");
+        txtColorSelected.setText("#FFFFFF");
     }
 
     private void initializeButtons() {
