@@ -1,7 +1,7 @@
 package com.example.appsoa2.presenters;
 
 import com.example.appsoa2.contracts.MainActivityContract;
-import com.example.appsoa2.models.Model;
+import com.example.appsoa2.models.MainModel;
 
 public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPresenter, MainActivityContract.PresenterMVP {
 
@@ -12,7 +12,7 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
         // El presentador es el unico que tiene conocimiento de los dos (Vista y Modelo)
         // Cada vez que se crea requiere de una vista, y a su vez crea una nueva instancia del modelo.
         this.mainView = mainView;
-        this.model = new Model();
+        this.model = new MainModel();
     }
 
     @Override

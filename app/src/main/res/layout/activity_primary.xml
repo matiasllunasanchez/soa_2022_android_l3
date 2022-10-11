@@ -24,11 +24,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_setLightLevel"
+        app:layout_constraintTop_toBottomOf="@+id/button_primary_save"
         app:strokeColor="#00FFFFFF" />
 
     <Button
-        android:id="@+id/btn_setLightLevel"
+        android:id="@+id/button_primary_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="153dp"
@@ -40,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/input_finalLightLevel"
+        android:id="@+id/input_primary_finalLightLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -50,7 +50,7 @@
         android:ems="10"
         android:inputType="number"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_setLightLevel"
+        app:layout_constraintBottom_toTopOf="@+id/button_primary_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -65,10 +65,10 @@
         android:layout_marginEnd="125dp"
         android:layout_marginBottom="15dp"
         android:text="Luminosidad configurada:"
-        app:layout_constraintBottom_toTopOf="@+id/input_finalLightLevel"
+        app:layout_constraintBottom_toTopOf="@+id/input_primary_finalLightLevel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_currentLightLevel" />
+        app:layout_constraintTop_toBottomOf="@+id/text_primary_currentLightLevel" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -95,13 +95,13 @@
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="16dp"
         android:text="Luminosidad actual:"
-        app:layout_constraintBottom_toTopOf="@+id/text_currentLightLevel"
+        app:layout_constraintBottom_toTopOf="@+id/text_primary_currentLightLevel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/text_currentLightLevel"
+        android:id="@+id/text_primary_currentLightLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="166dp"

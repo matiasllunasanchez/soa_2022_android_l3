@@ -14,21 +14,21 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="128dp"
         android:layout_marginBottom="11dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_shakeResult"
+        app:layout_constraintBottom_toTopOf="@+id/text_ledColorSelected"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
     <TextView
-        android:id="@+id/text_shakeResult"
+        android:id="@+id/text_ledColorSelected"
         android:layout_width="111dp"
         android:layout_height="21dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="128dp"
         android:layout_marginBottom="84dp"
         android:text="#ffffffaaa"
-        app:layout_constraintBottom_toTopOf="@+id/button_shaker"
+        app:layout_constraintBottom_toTopOf="@+id/button_secondary_shaker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3" />
 
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_shaker"
+        android:id="@+id/button_secondary_shaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="157dp"
@@ -98,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_shaker"
+        app:layout_constraintTop_toBottomOf="@+id/button_secondary_shaker"
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="#00FFFFFF" />
 

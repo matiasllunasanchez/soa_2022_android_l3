@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private View.OnClickListener btnListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent;
             switch (view.getId()) {
                 // El ID del elemento seleccionado desde la vista es recibido como parametro.
                 // Dependiendo de que boton fue seleccionado se hacen diferentes cosas o se tira error.
