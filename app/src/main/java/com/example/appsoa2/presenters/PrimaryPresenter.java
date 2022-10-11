@@ -9,7 +9,7 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
     private PrimaryActivityContract.ViewMVP mainView;
     private final PrimaryActivityContract.ModelMVP model;
 
-    public PrimaryPresenter(PrimaryActivityContract.ViewMVP mainView){
+    public PrimaryPresenter(PrimaryActivityContract.ViewMVP mainView) {
         // El presentador es el unico que tiene conocimiento de los dos (Vista y Modelo)
         // Cada vez que se crea requiere de una vista, y a su vez crea una nueva instancia del modelo.
         this.mainView = mainView;
@@ -18,12 +18,21 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
 
     @Override
     public void onInitialize() {
-
     }
 
     @Override
     public void onDestroy() {
         this.mainView = null;
+    }
+
+    @Override
+    public void handleSavedResult(int value) {
+        this.mainView.setResultValue(value);
+    }
+
+    @Override
+    public void saveInputValue(int i) {
+        this.model.saveLightLevel(this, i);
     }
 }
 

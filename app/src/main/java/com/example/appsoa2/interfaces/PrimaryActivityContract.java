@@ -1,18 +1,22 @@
 package com.example.appsoa2.interfaces;
 
-public interface PrimaryActivityContract {
-    interface ViewMVP{
+import com.example.appsoa2.presenters.PrimaryPresenter;
 
+public interface PrimaryActivityContract {
+    interface ViewMVP {
+        void setResultValue(int value);
     }
 
-    interface ModelMVP{
+    interface ModelMVP {
+        void saveLightLevel(PrimaryPresenter primaryPresenter, int i);
+
         interface OnSendToPresenter {
-            // Metodos que debe tener el presentador para manejar lo que le el modelo le mande por parametro, en este caso un string
+            void handleSavedResult(int value);
         }
 
     }
 
-    interface PresenterMVP{
-
+    interface PresenterMVP {
+        void saveInputValue(int i);
     }
 }

@@ -25,6 +25,7 @@ public interface MainActivityContract {
         // El presentador al momento de interactuar con la vista sabe que tiene que darle accion al setString
         // Estos metodos va a usar el presentador para comunicarse con el modelo y la vista
         void onSendButtonClick();
+
         void onDestroy();
     }
 }

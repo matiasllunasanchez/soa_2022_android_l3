@@ -11,7 +11,7 @@ public class SecondaryPresenter implements SecondaryActivityContract.ModelMVP.On
     private SecondaryActivityContract.ViewMVP mainView;
     private final SecondaryActivityContract.ModelMVP model;
 
-    public SecondaryPresenter(SecondaryActivityContract.ViewMVP mainView){
+    public SecondaryPresenter(SecondaryActivityContract.ViewMVP mainView) {
         // El presentador es el unico que tiene conocimiento de los dos (Vista y Modelo)
         // Cada vez que se crea requiere de una vista, y a su vez crea una nueva instancia del modelo.
         this.mainView = mainView;
@@ -34,7 +34,8 @@ public class SecondaryPresenter implements SecondaryActivityContract.ModelMVP.On
 
     @Override
     public void handleShakerResult(int value) {
-        this.mainView.setCurrentColor(value);
+        String hexColor = String.format("#%06X", (0xFFFFFF & value));
+        this.mainView.setCurrentColor(value, hexColor);
     }
 }
 

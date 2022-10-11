@@ -13,19 +13,17 @@ import java.util.Random;
 
 public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
 
+    int savedColor = 0;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void generateColor(SecondaryActivityContract.ModelMVP.OnSendToPresenter presenter) {
-        /*Random rand = new Random();
-        float red = rand.nextFloat();
-        float green = rand.nextFloat();
-        float blue = rand.nextFloat();
-        Color randomColor =  Color.valueOf(red,green,blue);*/
         Random random = new Random();
         int newColor = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        this.savedColor = newColor;
 
-        // TODO: Aca debo mandar al SE el color a setear del led.
+        // TODO: 1 - Enviar al SE el color a setear del led.
+        // TODO: 2 - Quiza persistirlo en el device
         presenter.handleShakerResult(newColor);
     }
-
 }

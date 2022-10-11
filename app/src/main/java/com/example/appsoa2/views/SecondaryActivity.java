@@ -20,7 +20,7 @@ import com.example.appsoa2.presenters.SecondaryPresenter;
 
 import java.util.Random;
 
-public class SecondaryActivity extends AppCompatActivity implements  SecondaryActivityContract.ViewMVP{
+public class SecondaryActivity extends AppCompatActivity implements SecondaryActivityContract.ViewMVP {
     private static final String TAG = "SecondaryActivity";
     private SecondaryActivityContract.PresenterMVP presenter;
 
@@ -35,7 +35,7 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
         initialize();
     }
 
-    private void initialize(){
+    private void initialize() {
         initializeButtons();
         initializeLabels();
         initializeOther();
@@ -43,7 +43,7 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
         Log.i(TAG, "Paso al estado Createad");
     }
 
-    private void initializeLabels(){
+    private void initializeLabels() {
         txtLedState = findViewById(R.id.text_ledState);
         txtColorSelected = findViewById(R.id.text_ledColorSelected);
         txtLedState.setText("ENCENDIDO");
@@ -58,6 +58,7 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Click en SHAKE ");
+                // TODO: Este evento se debe lanzar / triggerear cuando el sensor detecte un SHAKE del dispositivo
                 presenter.shakeEventHandler();
             }
         });
@@ -75,14 +76,12 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
         });
     }
 
-    private void initializeOther(){
+    private void initializeOther() {
         imgCurrentLed = findViewById(R.id.image_secondary_led);
     }
 
-    @SuppressLint("ResourceType")
     @Override
-    public void setCurrentColor(int value) {
-        String hexColor = String.format("#%06X", (0xFFFFFF & value));
+    public void setCurrentColor(int value, String hexColor) {
         txtColorSelected.setText(hexColor);
         imgCurrentLed.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
     }
