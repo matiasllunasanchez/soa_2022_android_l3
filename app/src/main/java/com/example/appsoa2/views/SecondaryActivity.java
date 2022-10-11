@@ -1,17 +1,24 @@
 package com.example.appsoa2.views;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appsoa2.R;
-import com.example.appsoa2.contracts.SecondaryActivityContract;
+import com.example.appsoa2.interfaces.SecondaryActivityContract;
 import com.example.appsoa2.presenters.SecondaryPresenter;
+
+import java.util.Random;
 
 public class SecondaryActivity extends AppCompatActivity implements  SecondaryActivityContract.ViewMVP{
     private static final String TAG = "SecondaryActivity";
@@ -19,6 +26,7 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
 
     private Button btnShake, btnBack;
     private TextView txtLedState, txtColorSelected;
+    private ImageView imgCurrentLed;
 
     @Override // Este metodo lo dejamos fijo
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,7 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
     private void initialize(){
         initializeButtons();
         initializeLabels();
+        initializeOther();
         presenter = new SecondaryPresenter(this);
         Log.i(TAG, "Paso al estado Createad");
     }
@@ -47,9 +56,9 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Click en SHAKE ");
+                presenter.shakeEventHandler();
             }
         });
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,4 +73,15 @@ public class SecondaryActivity extends AppCompatActivity implements  SecondaryAc
         });
     }
 
+    private void initializeOther(){
+        imgCurrentLed = findViewById(R.id.image_secondary_led);
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public void setCurrentColor(int value) {
+        String hexColor = String.format("#%06X", (0xFFFFFF & value));
+        txtColorSelected.setText(hexColor);
+        imgCurrentLed.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
+    }
 }

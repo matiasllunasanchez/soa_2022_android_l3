@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.appsoa2.presenters.MainPresenter;
 import com.example.appsoa2.R;
-import com.example.appsoa2.contracts.MainActivityContract;
+import com.example.appsoa2.interfaces.MainActivityContract;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.ViewMVP {
 

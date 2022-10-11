@@ -10,10 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appsoa2.R;
-import com.example.appsoa2.contracts.MainActivityContract;
-import com.example.appsoa2.contracts.PrimaryActivityContract;
+import com.example.appsoa2.interfaces.PrimaryActivityContract;
 import com.example.appsoa2.presenters.PrimaryPresenter;
-import com.example.appsoa2.presenters.SecondaryPresenter;
 
 public class PrimaryActivity extends AppCompatActivity implements PrimaryActivityContract.ViewMVP{
     private static final String TAG = "PrimaryActivity";

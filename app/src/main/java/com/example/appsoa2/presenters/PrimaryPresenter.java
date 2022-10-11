@@ -1,10 +1,10 @@
 package com.example.appsoa2.presenters;
 
-import com.example.appsoa2.contracts.PrimaryActivityContract;
-import com.example.appsoa2.models.MainModel;
+import com.example.appsoa2.interfaces.BasePresenter;
+import com.example.appsoa2.interfaces.PrimaryActivityContract;
 import com.example.appsoa2.models.PrimaryModel;
 
-public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSendToPresenter, PrimaryActivityContract.PresenterMVP {
+public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSendToPresenter, PrimaryActivityContract.PresenterMVP, BasePresenter {
 
     private PrimaryActivityContract.ViewMVP mainView;
     private final PrimaryActivityContract.ModelMVP model;
@@ -16,5 +16,14 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
         this.model = new PrimaryModel();
     }
 
+    @Override
+    public void onInitialize() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        this.mainView = null;
+    }
 }
 
