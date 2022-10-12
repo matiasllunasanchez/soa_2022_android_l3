@@ -75,7 +75,6 @@ public class SecondaryActivity extends AppCompatActivity implements SecondaryAct
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Click en SHAKE ");
-                // TODO: Este evento se debe lanzar / triggerear cuando el sensor detecte un SHAKE del dispositivo
                 presenter.shakeEventHandler();
             }
         });

@@ -23,7 +23,7 @@ public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
         this.savedColor = newColor;
 
         // TODO: 1 - Enviar al SE el color a setear del led.
-        // TODO: 2 - Quiza persistirlo en el device
+        // TODO: 2 - Quiza persistirlo en el device o me lo manda el SE siempre
         presenter.handleShakerResult(newColor);
     }
 }
