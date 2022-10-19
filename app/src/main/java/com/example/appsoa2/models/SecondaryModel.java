@@ -19,11 +19,19 @@ public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
     @Override
     public void generateColor(SecondaryActivityContract.ModelMVP.OnSendToPresenter presenter) {
         Random random = new Random();
-        int newColor = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
-        this.savedColor = newColor;
+        //int newColor = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        int newColor = new Random().nextInt(5 - 3 + 1) + 3;
+        // Crear enum para ROJO VERDE Y AZUL
+        int resultColor = Color.argb(255,0,0,0);;
+        if(newColor == 3)
+            resultColor = Color.argb(255,255,0,0);
+        else if(newColor == 4)
+            resultColor = Color.argb(255,0,255,0);
+        else if(newColor == 5)
+            resultColor = Color.argb(255,0,0,255);
 
-        // TODO: 1 - Enviar al SE el color a setear del led.
-        // TODO: 2 - Quiza persistirlo en el device o me lo manda el SE siempre
-        presenter.handleShakerResult(newColor);
+        this.savedColor = resultColor;
+        // TODO: 1 - Enviar al SE el color a setear del led. Enviar valor 3 4 o 5
+        presenter.handleShakerResult(resultColor);
     }
 }

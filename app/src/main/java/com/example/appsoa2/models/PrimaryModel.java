@@ -11,7 +11,6 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
     public void saveLightLevel(PrimaryPresenter primaryPresenter, int i) {
         // TODO:  1 - Enviar la luminosidad deseada al SE
         // TODO: Falta recibir luminosidad actual en algun lado
-        // TODO:  2 - Persistir este valor en algun archivo real del device, al menos hasta que el led del SE alcance la luminosidad deseada o me lo manda el SE siempre
         this.currentLight = i;
         primaryPresenter.handleSavedResult(i);
     }
