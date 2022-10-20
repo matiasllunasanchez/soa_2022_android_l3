@@ -1,6 +1,7 @@
 package com.example.appsoa2.views;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -13,6 +14,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.appsoa2.R;
 import com.example.appsoa2.interfaces.PrimaryActivityContract;
@@ -33,24 +35,26 @@ public class PrimaryActivity extends AppCompatActivity implements PrimaryActivit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_primary);
-        initialize();
+        this.setContentView(R.layout.activity_primary);
+        this.initialize();
     }
 
     private void initialize() {
-        initializeButtons();
-        initializeLabels();
-        initializeOthers();
-        presenter = new PrimaryPresenter(this);
+        this.initializeButtons();
+        this.initializeLabels();
+        this.initializeOthers();
+        this.presenter = new PrimaryPresenter(this);
         Log.i(TAG, "Paso al estado Createad");
     }
 
     private void initializeButtons() {
-        btnSave = findViewById(R.id.button_primary_save);
-        btnBack = findViewById(R.id.button_primary_back);
+        this.btnSave = findViewById(R.id.button_primary_save);
+        this.btnBack = findViewById(R.id.button_primary_back);
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        this.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.saveInputValue(Integer.parseInt(String.valueOf(inputTextbox.getText())));
@@ -72,20 +76,18 @@ public class PrimaryActivity extends AppCompatActivity implements PrimaryActivit
     }
 
     private void initializeLabels() {
-        txtCurrentLightLevel = findViewById(R.id.text_primary_currentLightLevel);
+        this.txtCurrentLightLevel = findViewById(R.id.text_primary_currentLightLevel);
     }
 
     private void initializeOthers() {
-        // Se inicializa y se pone valor min y max
-        seekBarValue = (SeekBar) findViewById(R.id.seekbar_primary_finalLightLevel);
-        inputTextbox = (EditText) findViewById(R.id.input_primary_finalLightLevel);
-        inputTextbox.setFilters(new InputFilter[]{new MinMaxFilter("0", "100")});
+        this.seekBarValue = (SeekBar) findViewById(R.id.seekbar_primary_finalLightLevel);
+        this.inputTextbox = (EditText) findViewById(R.id.input_primary_finalLightLevel);
+        this.inputTextbox.setFilters(new InputFilter[]{new MinMaxFilter("0", "100")});
 
-        seekBarValue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        this.seekBarValue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Log.i(TAG, "Mientras cambia la barra" + progress);
-                // txtCurrentLightLevel.setText(String.valueOf(progress) + "%");
                 inputTextbox.setText(progress + "");
             }
 
@@ -97,11 +99,10 @@ public class PrimaryActivity extends AppCompatActivity implements PrimaryActivit
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Log.i(TAG, "Al terminar de cambiar la barra");
-                // inputTextbox.setText(String.valueOf(seekBar.val));
             }
         });
 
-        inputTextbox.addTextChangedListener(new TextWatcher() {
+        this.inputTextbox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 Log.i(TAG, "Antes de cambiar input");
@@ -128,6 +129,6 @@ public class PrimaryActivity extends AppCompatActivity implements PrimaryActivit
     @Override
     public void setResultValue(int value) {
         Log.i(TAG, "Se guardo valor de luz: " + value);
-        txtCurrentLightLevel.setText("Porcentaje de luz: " + String.valueOf(value) + "%");
+        this.txtCurrentLightLevel.setText("Porcentaje de luz: " + String.valueOf(value) + "%");
     }
 }

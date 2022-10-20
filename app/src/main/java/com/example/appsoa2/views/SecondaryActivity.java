@@ -3,6 +3,7 @@ package com.example.appsoa2.views;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.appsoa2.R;
 import com.example.appsoa2.interfaces.SecondaryActivityContract;
@@ -47,6 +49,8 @@ public class SecondaryActivity extends AppCompatActivity implements SecondaryAct
 
     @Override // Este metodo lo dejamos fijo
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
         initialize();

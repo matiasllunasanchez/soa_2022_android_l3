@@ -10,8 +10,6 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
     private final PrimaryActivityContract.ModelMVP model;
 
     public PrimaryPresenter(PrimaryActivityContract.ViewMVP mainView) {
-        // El presentador es el unico que tiene conocimiento de los dos (Vista y Modelo)
-        // Cada vez que se crea requiere de una vista, y a su vez crea una nueva instancia del modelo.
         this.mainView = mainView;
         this.model = new PrimaryModel();
     }
