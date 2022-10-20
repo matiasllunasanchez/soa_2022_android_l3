@@ -1,17 +1,20 @@
 package com.example.appsoa2.models;
 
+import android.util.Log;
+
 import com.example.appsoa2.interfaces.PrimaryActivityContract;
 import com.example.appsoa2.presenters.PrimaryPresenter;
 
 public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
-
+    private static final String TAG = "PrimaryModel";
     private int currentLight = 0;
 
     @Override
     public void saveLightLevel(PrimaryPresenter primaryPresenter, int i) {
-        // TODO:  1 - Enviar la luminosidad deseada al SE
-        // TODO: Falta recibir luminosidad actual en algun lado
         this.currentLight = i;
+        Log.i(TAG, "Enviar al SE la luminosidad requierida para la habitacion. Valor de luminosidad en porcentaje: "+i);
         primaryPresenter.handleSavedResult(i);
     }
+
+    // TODO: Falta requerir periodicamente la luminosidad actual y mantener actualizado el porcentaje de luz.
 }

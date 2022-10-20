@@ -4,8 +4,6 @@ import com.example.appsoa2.interfaces.MainActivityContract;
 
 public class MainModel implements MainActivityContract.ModelMVP {
     // Extiende del contrato
-
-
     // Sabe que cualquier presentador que tenga va a tner q ejecutar el onFinished por que le contrato lo dice.
     @Override
     public void processDataGetResult(OnSendToPresenter presenter) {
