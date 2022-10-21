@@ -45,44 +45,47 @@ public class SecondaryActivity extends AppCompatActivity implements SecondaryAct
     private boolean notFirstMove = false;
     private float xDiff, yDiff, zDiff;
     private Vibrator vibratorObj;
-
+    private static final String RED_COLOR_HEX = "#FF0000";
+    private static final String GREEN_COLOR_HEX = "#00FF00";
+    private static final String BLUE_COLOR_HEX = "0000FF";
+    private ImageView lampImg;
 
     @Override // Este metodo lo dejamos fijo
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_secondary);
-        initialize();
+        this.setContentView(R.layout.activity_secondary);
+        this.initialize();
     }
 
     private void initialize() {
-        initializeButtons();
-        initializeLabels();
-        initializeOther();
+        this.initializeButtons();
+        this.initializeLabels();
+        initializeOthers();
         presenter = new SecondaryPresenter(this);
         Log.i(TAG, "Paso al estado Createad");
     }
 
     private void initializeLabels() {
-        txtLedState = findViewById(R.id.text_ledState);
-        txtColorSelected = findViewById(R.id.text_ledColorSelected);
-        txtLedState.setText("ENCENDIDO");
-        txtColorSelected.setText("#FFFFFF");
+        this.txtLedState = this.findViewById(R.id.text_ledState);
+        this.txtColorSelected = this.findViewById(R.id.text_ledColorSelected);
+        this.txtLedState.setText("ENCENDIDO");
+        this.txtColorSelected.setText("#FFFFFF");
     }
 
     private void initializeButtons() {
-        btnShake = findViewById(R.id.button_secondary_shaker);
-        btnBack = findViewById(R.id.button_secondary_back);
+        this.btnShake = this.findViewById(R.id.button_secondary_shaker);
+        this.btnBack = this.findViewById(R.id.button_secondary_back);
 
-        btnShake.setOnClickListener(new View.OnClickListener() {
+        this.btnShake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Click en SHAKE ");
                 presenter.shakeEventHandler();
             }
         });
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        this.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Click en BACK ");
@@ -96,17 +99,19 @@ public class SecondaryActivity extends AppCompatActivity implements SecondaryAct
         });
     }
 
-    private void initializeOther() {
-        imgCurrentLed = findViewById(R.id.image_secondary_led);
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        vibratorObj = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+    private void initializeOthers() {
+        this.imgCurrentLed = findViewById(R.id.image_secondary_led);
+        this.sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        this.sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        this.vibratorObj = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        this.lampImg = (ImageView) this.findViewById(R.id.image_secondary_led);
     }
 
     @Override
     public void setCurrentColor(int value, String hexColor) {
-        txtColorSelected.setText(hexColor);
-        imgCurrentLed.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
+        this.txtColorSelected.setText(hexColor);
+        this.setLampColor(hexColor);
+        this.imgCurrentLed.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
     }
 
     @SuppressLint("WrongConstant")
@@ -126,9 +131,9 @@ public class SecondaryActivity extends AppCompatActivity implements SecondaryAct
             if ((xDiff > SHAKE_THRESHOLD && yDiff > SHAKE_THRESHOLD) || (yDiff > SHAKE_THRESHOLD && zDiff > SHAKE_THRESHOLD) || (xDiff > SHAKE_THRESHOLD && zDiff > SHAKE_THRESHOLD)) {
                 // SHAKE EVENT!
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     vibratorObj.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                }else{
+                } else {
                     vibratorObj.vibrate(500);
                 }
                 presenter.shakeEventHandler();
@@ -149,12 +154,29 @@ public class SecondaryActivity extends AppCompatActivity implements SecondaryAct
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        this.sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this);
+        this.sensorManager.unregisterListener(this);
+    }
+
+    private void setLampColor(String value) {
+        switch (value) {
+            case RED_COLOR_HEX:
+                this.lampImg.setImageResource(R.drawable.lamp_red);
+                break;
+            case GREEN_COLOR_HEX:
+                this.lampImg.setImageResource(R.drawable.lamp_green);
+                break;
+            case BLUE_COLOR_HEX:
+                this.lampImg.setImageResource(R.drawable.lamp_blue);
+                break;
+            default:
+                this.lampImg.setImageResource(R.drawable.lamp_values);
+                break;
+        }
     }
 }

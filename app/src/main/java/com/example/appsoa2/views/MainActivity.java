@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_main);
-        initialize();
+        this.setContentView(R.layout.activity_main);
+        this.initialize();
     }
 
     private void initialize() {
@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Button btnPrimary = findViewById(R.id.button_primary);
         Button btnSecondary = findViewById(R.id.button_secondary);
 
-        btnPrimary.setOnClickListener(btnListener);
-        btnSecondary.setOnClickListener(btnListener);
+        btnPrimary.setOnClickListener(this.btnListener);
+        btnSecondary.setOnClickListener(this.btnListener);
 
-        textView = findViewById(R.id.textView);
-        presenter = new MainPresenter(this);
+        this.textView = this.findViewById(R.id.textView);
+        this.presenter = new MainPresenter(this);
 
         Log.i(TAG, "Paso al estado Createad");
     }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".views.PrimaryActivity"
     android:screenOrientation="portrait"
+    android:background="@drawable/fondo2"
     android:configChanges="keyboardHidden|orientation|screenSize">
 
     <Button
@@ -19,7 +20,7 @@
         android:layout_marginBottom="16dp"
         android:text="Volver"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#673AB7"
+        android:textColor="#7a78ff"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +37,12 @@
         android:layout_marginStart="153dp"
         android:layout_marginEnd="153dp"
         android:layout_marginBottom="69dp"
+        android:backgroundTint="#7a78ff"
         android:text="Guardar"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_menu_save"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -68,6 +74,7 @@
         android:layout_marginEnd="125dp"
         android:layout_marginBottom="15dp"
         android:text="Luminosidad deseada:"
+        android:textColor="#313848"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/input_primary_finalLightLevel"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +82,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/image_primary_led"
         android:layout_width="169dp"
         android:layout_height="129dp"
         android:layout_marginStart="121dp"
@@ -88,7 +95,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_mylocation"
+        app:srcCompat="@drawable/lamp_values"
         tools:ignore="ImageContrastCheck" />
 
     <TextView
@@ -100,11 +107,12 @@
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="16dp"
         android:text="Luminosidad actual:"
+        android:textColor="#313848"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/text_primary_currentLightLevel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/image_primary_led" />
 
     <TextView
         android:id="@+id/text_primary_currentLightLevel"
@@ -115,6 +123,7 @@
         android:layout_marginEnd="169dp"
         android:layout_marginBottom="114dp"
         android:text="empty-value"
+        android:textColor="#7a78ff"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +138,7 @@
         android:layout_marginEnd="97dp"
         android:layout_marginBottom="51dp"
         android:max="100"
-        android:progress="@integer/material_motion_duration_medium_1"
+        android:progress="0"
         app:layout_constraintBottom_toTopOf="@+id/button_primary_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

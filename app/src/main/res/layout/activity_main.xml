@@ -9,7 +9,7 @@
     android:padding="20dp"
     android:screenOrientation="portrait"
     android:textAlignment="center"
-    android:background="@drawable/fondo1"
+    android:background="@drawable/fondov2"
     tools:context=".views.MainActivity">
 
 
@@ -35,7 +35,7 @@
         android:layout_marginStart="155dp"
         android:layout_marginEnd="155dp"
         android:layout_marginBottom="68dp"
-        android:backgroundTint="#4A69BB"
+        android:backgroundTint="#1f4766"
         android:padding="20dp"
         android:shadowColor="#323232"
         android:shadowDx="5"
@@ -56,7 +56,7 @@
         android:layout_height="84dp"
         android:layout_marginTop="281dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="#617BE3"
+        android:backgroundTint="#797ae4"
         android:padding="20dp"
         android:shadowColor="#474747"
         android:shadowDx="5"

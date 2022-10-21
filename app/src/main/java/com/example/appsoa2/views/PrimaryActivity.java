@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -26,11 +27,15 @@ import java.util.Formatter;
 public class PrimaryActivity extends AppCompatActivity implements PrimaryActivityContract.ViewMVP {
     private static final String TAG = "PrimaryActivity";
     private PrimaryActivityContract.PresenterMVP presenter;
+    private static final int MIN_LIGHT_VALUE = 30;
+    private static final int EMPTY_LIGHT_VALUE = 0;
+    private static final int MEDIUM_LIGHT_VALUE = 65;
 
     private Button btnSave, btnBack;
     private TextView txtCurrentLightLevel;
     private EditText inputTextbox;
     private SeekBar seekBarValue;
+    private ImageView lampImg;
     private boolean changedProgrammatically = false;
 
     @Override
@@ -76,13 +81,14 @@ public class PrimaryActivity extends AppCompatActivity implements PrimaryActivit
     }
 
     private void initializeLabels() {
-        this.txtCurrentLightLevel = findViewById(R.id.text_primary_currentLightLevel);
+        this.txtCurrentLightLevel = this.findViewById(R.id.text_primary_currentLightLevel);
     }
 
     private void initializeOthers() {
-        this.seekBarValue = (SeekBar) findViewById(R.id.seekbar_primary_finalLightLevel);
-        this.inputTextbox = (EditText) findViewById(R.id.input_primary_finalLightLevel);
+        this.seekBarValue = (SeekBar) this.findViewById(R.id.seekbar_primary_finalLightLevel);
+        this.inputTextbox = (EditText) this.findViewById(R.id.input_primary_finalLightLevel);
         this.inputTextbox.setFilters(new InputFilter[]{new MinMaxFilter("0", "100")});
+        this.lampImg = (ImageView) this.findViewById(R.id.image_primary_led);
 
         this.seekBarValue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -129,6 +135,25 @@ public class PrimaryActivity extends AppCompatActivity implements PrimaryActivit
     @Override
     public void setResultValue(int value) {
         Log.i(TAG, "Se guardo valor de luz: " + value);
+        Log.i(TAG, "Estee " + EMPTY_LIGHT_VALUE);
+        // this.setLampLevel(value);
         this.txtCurrentLightLevel.setText("Porcentaje de luz: " + String.valueOf(value) + "%");
+        this.setLampLevel(value);
+    }
+
+    private void setLampLevel(int value) {
+        if (value > EMPTY_LIGHT_VALUE) {
+            if (value > MIN_LIGHT_VALUE) {
+                if (value > MEDIUM_LIGHT_VALUE) {
+                    this.lampImg.setImageResource(R.drawable.lamp1_full);
+                } else {
+                    this.lampImg.setImageResource(R.drawable.lamp1_med);
+                }
+            } else {
+                this.lampImg.setImageResource(R.drawable.lamp1_min);
+            }
+        } else {
+            this.lampImg.setImageResource(R.drawable.lamp_values);
+        }
     }
 }
