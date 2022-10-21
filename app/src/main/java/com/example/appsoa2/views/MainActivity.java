@@ -103,5 +103,4 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         super.onRestart();
         Log.i(TAG, "Paso al estado Restarted");
     }
-
 }
