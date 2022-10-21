@@ -27,26 +27,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="217dp"
-        android:layout_height="57dp"
-        android:padding="20dp"
-        android:shadowColor="#FBFBFB"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
-        android:text="Seleccione una opción"
-        android:textAlignment="center"
-        android:textColor="#797ae4"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_secondary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
-
     <Button
         android:id="@+id/button_secondary"
         android:layout_width="253dp"
@@ -60,7 +40,10 @@
         android:shadowRadius="10.0"
         android:text="AJUSTAR COLOR"
         app:cornerRadius="50dp"
-        app:icon="@android:drawable/presence_online"
+        app:icon="@drawable/flaticonmaker"
+        app:iconSize="30dp"
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="multiply"
         app:layout_constraintBottom_toTopOf="@+id/button_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -71,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginEnd="155dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="112dp"
         android:backgroundTint="#1f4766"
         android:padding="20dp"
         android:shadowColor="#323232"
@@ -81,7 +64,8 @@
         android:text="AJUSTAR ILUMINACION"
         android:textAlignment="center"
         app:cornerRadius="50dp"
-        app:icon="@android:drawable/ic_menu_compass"
+        app:icon="@drawable/lamp1_full"
+        app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

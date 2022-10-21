@@ -112,6 +112,12 @@ public class SecondaryActivity extends AppCompatActivity implements SecondaryAct
         this.txtColorSelected.setText(hexColor);
         this.setLampColor(hexColor);
         this.imgCurrentLed.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
+        Context context = getApplicationContext();
+        CharSequence text = "¡Cambió el color del led!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
     @SuppressLint("WrongConstant")
