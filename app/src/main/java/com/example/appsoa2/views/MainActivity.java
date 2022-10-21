@@ -25,16 +25,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.buttonNext:
-                    Log.i(TAG, "Click en NEXT ");
-                    break;
-                case R.id.buttonSend:
-                    Log.i(TAG, "Click en SEND ");
-                    presenter.onSendButtonClick();
-                    break;
-                case R.id.buttonStartAct:
-                    Log.i(TAG, "Click en START ");
-                    break;
                 case R.id.button_primary:
                     Log.i(TAG, "Click en PRIMARY ");
                     try {
@@ -70,15 +60,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     private void initialize() {
-        Button btnStart = findViewById(R.id.buttonStartAct);
-        Button btnNext = findViewById(R.id.buttonNext);
-        Button btnSend = findViewById(R.id.buttonSend);
+
         Button btnPrimary = findViewById(R.id.button_primary);
         Button btnSecondary = findViewById(R.id.button_secondary);
 
-        btnStart.setOnClickListener(btnListener);
-        btnNext.setOnClickListener(btnListener);
-        btnSend.setOnClickListener(btnListener);
         btnPrimary.setOnClickListener(btnListener);
         btnSecondary.setOnClickListener(btnListener);
 
