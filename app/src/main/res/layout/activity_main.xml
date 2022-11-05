@@ -27,6 +27,26 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txtEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_marginBottom="19dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:padding="5dp"
+        android:text="Esperá..."
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_secondary"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
+
     <Button
         android:id="@+id/button_secondary"
         android:layout_width="253dp"
