@@ -45,7 +45,7 @@
     <Button
         android:id="@+id/button_secondary"
         android:layout_width="256dp"
-        android:layout_height="0dp"
+        android:layout_height="65dp"
         android:layout_marginTop="26dp"
         android:backgroundTint="#797ae4"
         android:padding="20dp"
@@ -77,8 +77,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_secondary"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.961" />
 
 </android.support.constraint.ConstraintLayout>
