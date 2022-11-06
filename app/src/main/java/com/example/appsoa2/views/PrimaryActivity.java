@@ -51,7 +51,12 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
         this.initializeLabels();
         this.initializeOthers();
         this.presenter = new PrimaryPresenter(this);
+        this.initializeBluetoothModule();
         Log.i(TAG, "Paso al estado Createad");
+    }
+
+    private void initializeBluetoothModule(){
+
     }
 
     private void initializeButtons() {

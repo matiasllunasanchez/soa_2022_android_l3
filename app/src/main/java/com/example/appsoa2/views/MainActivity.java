@@ -75,7 +75,6 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		this.setContentView(R.layout.activity_main);
 		this.initialize();
-		this.initializeBluetoothModule();
 	}
 
 	private void initialize() {
@@ -90,6 +89,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 		this.presenter = new MainPresenter(this);
 		this.txtEstado = (TextView) findViewById(R.id.txtEstado);
 
+		this.initializeBluetoothModule();
 		Log.i(TAG, "Paso al estado Createad");
 	}
 
@@ -353,8 +353,11 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 				case R.id.button_primary:
 					Log.i(TAG, "Click en PRIMARY ");
 					try {
-						Intent k = new Intent(MainActivity.this, PrimaryActivity.class);
-						startActivity(k);
+						if(primaryDevice != null){
+							Intent k = new Intent(MainActivity.this, PrimaryActivity.class);
+							k.putExtra("Direccion_Bluethoot", primaryDevice);
+							startActivity(k);
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -362,8 +365,11 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 				case R.id.button_secondary:
 					Log.i(TAG, "Click en SECONDARY ");
 					try {
-						Intent k = new Intent(MainActivity.this, SecondaryActivity.class);
-						startActivity(k);
+						if(primaryDevice != null){
+							Intent k = new Intent(MainActivity.this, SecondaryActivity.class);
+							k.putExtra("Direccion_Bluethoot", primaryDevice);
+							startActivity(k);
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -374,7 +380,6 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 			}
 		}
 	};
-
 
 	@Override
 	public void onPause() {

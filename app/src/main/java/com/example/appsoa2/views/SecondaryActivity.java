@@ -47,7 +47,7 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     private static final String WHITE_COLOR_HEX = "FFFFFF";
     private ImageView lampImg;
 
-    @Override // Este metodo lo dejamos fijo
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -59,9 +59,14 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     private void initialize() {
         this.initializeButtons();
         this.initializeLabels();
-        initializeOthers();
+        this.initializeOthers();
         presenter = new SecondaryPresenter(this);
+        this.initializeBluetoothModule();
         Log.i(TAG, "Paso al estado Createad");
+    }
+
+    private void initializeBluetoothModule(){
+
     }
 
     private void initializeLabels() {
