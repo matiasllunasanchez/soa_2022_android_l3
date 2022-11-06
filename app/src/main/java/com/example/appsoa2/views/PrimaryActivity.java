@@ -1,5 +1,6 @@
 package com.example.appsoa2.views;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -14,17 +15,15 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
-import com.example.appsoa2.R;
+import net.londatiga.android.bluetooth.R;
 import com.example.appsoa2.interfaces.PrimaryActivityContract;
 import com.example.appsoa2.presenters.PrimaryPresenter;
 import com.example.appsoa2.views.components.MinMaxFilter;
 
 import java.util.Formatter;
 
-public class PrimaryActivity extends AppCompatActivity implements PrimaryActivityContract.ViewMVP {
+public class PrimaryActivity extends Activity implements PrimaryActivityContract.ViewMVP {
     private static final String TAG = "PrimaryActivity";
     private PrimaryActivityContract.PresenterMVP presenter;
     private static final int MIN_LIGHT_VALUE = 30;
@@ -40,7 +39,7 @@ public class PrimaryActivity extends AppCompatActivity implements PrimaryActivit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_primary);

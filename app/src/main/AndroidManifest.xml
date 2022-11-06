@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.appsoa2">
+    package="net.londatiga.android.bluetooth"
+    android:versionCode="1"
+    android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Appsoa2">
+        android:theme="@style/AppTheme">
+
+        <!--- Defino la activity Principal -->
         <activity
-            android:name=".views.MainActivity"
-            android:exported="true">
+            android:name="com.example.appsoa2.views.MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,14 +30,17 @@
         </activity>
 
         <activity
-            android:name=".views.PrimaryActivity"
+            android:name="com.example.appsoa2.views.PrimaryActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".views.SecondaryActivity"
+            android:name="com.example.appsoa2.views.SecondaryActivity"
             android:exported="true">
         </activity>
+
+        <activity android:name="com.example.appsoa2.views.activity_comunicacion"></activity>
+
     </application>
 
 </manifest>

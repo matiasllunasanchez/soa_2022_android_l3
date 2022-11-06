@@ -1,0 +1,274 @@
+[
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_notification_action_background.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lamp_green.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\lamp_green.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_secondary.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\layout\\activity_secondary.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lamp_blue.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\lamp_blue.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_cancel_action.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_comunicacion.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\layout\\activity_comunicacion.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_custom_big.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lamp1_min.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\lamp1_min.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_icon_group.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flaticonmaker.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\flaticonmaker.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg_low.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_action.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_activity_secondary.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\layout-v21\\activity_secondary.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action_tombstone.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lamp_white.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\lamp_white.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_action.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lamp1_med.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\lamp1_med.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_activity_primary.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\layout-v21\\activity_primary.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_primary.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\layout\\activity_primary.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_template_icon_group.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fondo1.jpg.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\fondo1.jpg"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_tile_bg.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_log2.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\log2.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_template_custom_big.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_activity_comunicacion.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\layout-v21\\activity_comunicacion.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_part_chronometer.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fondov2.jpg.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\fondov2.jpg"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_part_time.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_round.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_action_tombstone.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_custom.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fondo2.jpg.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\fondo2.jpg"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lamp_red.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\lamp_red.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_icon_background.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lamp1_full.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\lamp1_full.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_activity_main.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\layout-v21\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow_custom.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout-v16_notification_template_custom_big.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\layout-v16\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\7ec5de1bf67b1992412f8910414be53b\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media.xml.flat",
+        "source": "C:\\Users\\Brenda\\.gradle\\caches\\transforms-2\\files-2.1\\5795df55983196a49ee78339e0cc7dae\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lamp_values.png.flat",
+        "source": "D:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\src\\main\\res\\drawable\\lamp_values.png"
+    }
+]

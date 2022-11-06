@@ -1,0 +1,4 @@
+#Thu Nov 03 23:15:02 ART 2022
+base.0=D\:\\PERSONALES\\android\\soa_2022_android_l3_final\\bluetooth_reloaded\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\out
+renamed.0=classes.dex
+path.0=classes.dex

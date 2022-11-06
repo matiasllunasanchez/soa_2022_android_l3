@@ -4,8 +4,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
-
 import com.example.appsoa2.interfaces.MainActivityContract;
 import com.example.appsoa2.interfaces.SecondaryActivityContract;
 
@@ -19,11 +17,11 @@ public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
     final int RED_COLOR = 3;
     final int GREEN_COLOR = 4;
     final int BLUE_COLOR = 5;
+    final int WHITE_COLOR = 6;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void generateColor(SecondaryActivityContract.ModelMVP.OnSendToPresenter presenter) {
-        int newColor = new Random().nextInt(5 - 3 + 1) + 3;
+        int newColor = new Random().nextInt(6 - 3 + 1) + 3;
         int resultColor = 0;
         switch (newColor) {
             case RED_COLOR:
@@ -34,6 +32,9 @@ public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
                 break;
             case BLUE_COLOR:
                 resultColor = Color.argb(255, 0, 0, 255);
+                break;
+            case WHITE_COLOR:
+                resultColor = Color.argb(255, 255, 255, 255);
                 break;
             default:
                 resultColor = Color.argb(255, 0, 0, 0);
