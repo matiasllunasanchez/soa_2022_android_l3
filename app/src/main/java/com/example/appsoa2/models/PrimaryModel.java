@@ -13,6 +13,7 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
     public void saveLightLevel(PrimaryPresenter primaryPresenter, int i) {
         this.currentLight = i;
         Log.i(TAG, "Enviar al SE la luminosidad requierida para la habitacion. Valor de luminosidad en porcentaje: "+i);
+        // Hay que enviar data limitada, valores de 10 a 90.
         primaryPresenter.handleSavedResult(i);
     }
 

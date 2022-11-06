@@ -43,7 +43,6 @@
             android:name="com.example.appsoa2.views.SecondaryActivity"
             android:exported="true" >
         </activity>
-        <activity android:name="com.example.appsoa2.views.activity_comunicacion" />
 
         <meta-data
             android:name="android.support.VERSION"

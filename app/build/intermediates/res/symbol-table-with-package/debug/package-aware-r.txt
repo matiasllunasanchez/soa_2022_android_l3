@@ -126,6 +126,7 @@ id btnApagar
 id btnEncender
 id button_primary
 id button_primary_back
+id button_primary_refresh
 id button_primary_save
 id button_secondary
 id button_secondary_back

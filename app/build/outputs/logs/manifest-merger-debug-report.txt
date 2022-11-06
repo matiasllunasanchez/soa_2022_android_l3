@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-46:12
+ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-44:12
+INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-44:12
+INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-44:12
+INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-44:12
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\08d7a4f36cc6a6a6514e138b35e29c03\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\80c6acb9f677d54006e36bcc9edc11eb\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\5795df55983196a49ee78339e0cc7dae\AndroidManifest.xml:17:1-31:12
@@ -12,9 +12,9 @@ MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Brenda\.gra
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\cd4319f9a8a39b30acfdf4e16c5df61d\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\7ec5de1bf67b1992412f8910414be53b\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\8c5a6361e02bfb3b0630badaf51294d1\AndroidManifest.xml:17:1-30:12
-INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-44:12
+INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-44:12
+INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:2:1-44:12
 	package
 		ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:3:5-46
 		INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml
@@ -58,7 +58,7 @@ ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifes
 	android:name
 		ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:13:22-77
 application
-ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:15:5-44:19
+ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:15:5-42:19
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\08d7a4f36cc6a6a6514e138b35e29c03\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\08d7a4f36cc6a6a6514e138b35e29c03\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Brenda\.gradle\caches\transforms-2\files-2.1\80c6acb9f677d54006e36bcc9edc11eb\AndroidManifest.xml:9:5-20
@@ -111,10 +111,6 @@ ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifes
 		ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:39:13-36
 	android:name
 		ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:38:13-71
-activity#com.example.appsoa2.views.activity_comunicacion
-ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:42:9-93
-	android:name
-		ADDED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml:42:19-81
 uses-sdk
 INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\PERSONALES\android\soa_2022_android_l3\app\src\main\AndroidManifest.xml

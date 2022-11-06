@@ -65,6 +65,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 			Manifest.permission.READ_EXTERNAL_STORAGE};
 
 	private static String MAC_ADDRESS_DEVICE = "58:96:00:00:09:97";
+	// private static String MAC_ADDRESS_DEVICE = "7C:D9:5C:BC:A2:B1";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,10 +104,6 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 		mProgressDlg.setMessage("Buscando dispositivos...");
 		mProgressDlg.setCancelable(false);
 
-		//se asocia un listener al boton cancelar para la ventana de dialogo ue busca los dispositivos bluethoot
-		// mProgressDlg.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancelar", btnCancelarDialogListener);
-
-		//
 		if (checkPermissions())
 		{
 			enableComponent();
@@ -228,21 +225,13 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 			if (state == BluetoothDevice.BOND_BONDED && prevState == BluetoothDevice.BOND_BONDING)
 			{
 				//Si se detecto que se puedo emparejar el bluethoot
-				showToast("Proceso de conexion bluetooth ha finalizado!");
+				showToast("Proceso de conexion bt finalizado!");
 				BluetoothDevice dispositivo = (BluetoothDevice) primaryDevice;
 				//se inicia el Activity de comunicacion con el bluethoot, para transferir los datos.
 				//Para eso se le envia como parametro la direccion(MAC) del bluethoot Arduino
 				// ESTO LO TENGO QUE AHCER CUANDO PRESIONO UN BOTON PARA IR A UNA PANTALLA
 
-					/*
-					String direccionBluethoot = dispositivo.getAddress();
-					Intent i = new Intent(MainActivity.this, activity_comunicacion.class);
-					i.putExtra("Direccion_Bluethoot", direccionBluethoot);
-
-					startActivity(i);
-					 */
-
-			}  //si se detrecto un desaemparejamiento
+			}
 			else if (state == BluetoothDevice.BOND_NONE && prevState == BluetoothDevice.BOND_BONDED) {
 				showToast("Dispositivo desemparejado");
 				primaryDevice = null;
@@ -264,7 +253,6 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 				if (currentDevice.getAddress().equals(MAC_ADDRESS_DEVICE)) {
 					if (currentDevice.getBondState() == BluetoothDevice.BOND_BONDED)
 					{
-						//  unpairDevice(device);
 						txtEstado.setText("Cortina "+ currentDevice.getName()+" ya se encuentra conectada...");
 						pairDevice(currentDevice);
 						showToast("Dispositivo ya cortina conectada!");
@@ -351,7 +339,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 		public void onClick(View view) {
 			switch (view.getId()) {
 				case R.id.button_primary:
-					Log.i(TAG, "Click en PRIMARY ");
+					Log.i(TAG, "Click en PRIMARY "+primaryDevice);
 					try {
 						if(primaryDevice != null){
 							Intent k = new Intent(MainActivity.this, PrimaryActivity.class);

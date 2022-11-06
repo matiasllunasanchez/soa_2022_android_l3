@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Nov 05 23:35:30 ART 2022
+#Sun Nov 06 01:58:25 ART 2022
 0.base=D\:\\PERSONALES\\android\\soa_2022_android_l3\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 0.path=classes.dex
 count=1
