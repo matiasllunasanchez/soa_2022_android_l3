@@ -64,8 +64,9 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 			Manifest.permission.READ_PHONE_STATE,
 			Manifest.permission.READ_EXTERNAL_STORAGE};
 
-	private static String MAC_ADDRESS_DEVICE = "58:96:00:00:09:97";
+	// private static String MAC_ADDRESS_DEVICE = "58:96:00:00:09:97";
 	// private static String MAC_ADDRESS_DEVICE = "7C:D9:5C:BC:A2:B1";
+	 private static String MAC_ADDRESS_DEVICE = "00:21:06:BE:58:58"; // Real DEVICE
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -342,8 +343,9 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 					Log.i(TAG, "Click en PRIMARY "+primaryDevice);
 					try {
 						if(primaryDevice != null){
+							mBluetoothAdapter.cancelDiscovery();
 							Intent k = new Intent(MainActivity.this, PrimaryActivity.class);
-							k.putExtra("Direccion_Bluethoot", primaryDevice);
+							k.putExtra("Direccion_Bluethoot", primaryDevice.getAddress());
 							startActivity(k);
 						}
 					} catch (Exception e) {
@@ -355,7 +357,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 					try {
 						if(primaryDevice != null){
 							Intent k = new Intent(MainActivity.this, SecondaryActivity.class);
-							k.putExtra("Direccion_Bluethoot", primaryDevice);
+							k.putExtra("Direccion_Bluethoot", primaryDevice.getAddress());
 							startActivity(k);
 						}
 					} catch (Exception e) {
@@ -381,7 +383,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
 	@Override
 	public void onResume() {
-		showToast("Vuelvo!!");
+		showToast("ON Resume!!");
 		if(primaryDevice == null){
 			if(mBluetoothAdapter == null){
 				mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();

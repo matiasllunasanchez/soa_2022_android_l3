@@ -213,10 +213,8 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     }
 
     @Override
-    //Cada vez que se detecta el evento OnResume se establece la comunicacion con el HC05, creando un
-    //socketBluethoot
     public void onResume() {
-        super.onResume();
+        this.sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
         //Obtengo el parametro, aplicando un Bundle, que me indica la Mac Adress del HC05
         Intent intent=getIntent();
@@ -226,30 +224,13 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
 
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
 
-        //se realiza la conexion del Bluethoot crea y se conectandose a atraves de un socket
-        try {
-            btSocket = createBluetoothSocket(device);
-        }
-        catch (IOException e) {
-            showToast( "La creacción del Socket fallo");
-        }
-        // Establish the Bluetooth socket connection.
-        try {
-            btSocket.connect();
-        }
-        catch (IOException e) {
-            try {
-                btSocket.close();
-            }
-            catch (IOException e2) {
-                //insert code to deal with this
-            }
-        }
+        btSocket = creationSocketByDevice(address);
 
         mConnectedThread = new SecondaryActivity.ConnectedThread(btSocket);
         mConnectedThread.start();
         mConnectedThread.write("1");
-        this.sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        super.onResume();
+
     }
 
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
@@ -278,15 +259,32 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
 
         // Metodo para enviar / escribir en el dispositivo
         public void write(String input) {
+
             byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
+
             try {
+                Log.i(TAG, "Paso al estado Createad");
                 mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
             } catch (IOException e) {
                 //if you cannot write, close the application
-                showToast("La conexion fallo");
+                showToast("Error al mandar datos al SE");
                 finish();
 
             }
         }
+    }
+
+    private BluetoothSocket creationSocketByDevice(String address){
+        BluetoothSocket socketResult = null;
+
+        BluetoothDevice device = btAdapter.getRemoteDevice(address);
+        try {
+            socketResult = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+            socketResult.connect();
+            Log.i("[BLUETOOTH]","Connected to: "+device.getName());
+        }catch(IOException e){
+            try{socketResult.close();}catch(IOException c){return socketResult;}
+        }
+        return socketResult;
     }
 }

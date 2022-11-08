@@ -67,8 +67,8 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     }
 
     private void initialize() {
-        this.initializeButtons();
         this.initializeBluetoothModule();
+        this.initializeButtons();
         this.initializeLabels();
         this.initializeOthers();
         this.presenter = new PrimaryPresenter(this);
@@ -111,7 +111,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             @Override
             public void onClick(View view) {
                 // Solicito luminosidad actual
-                mConnectedThread.write("1");
+                mConnectedThread.write("3");
             }
         });
 
@@ -203,13 +203,14 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
         this.btAdapter = BluetoothAdapter.getDefaultAdapter();
         //defino el Handler de comunicacion entre el hilo Principal  el secundario.
         //El hilo secundario va a mostrar informacion al layout atraves utilizando indeirectamente a este handler
-        this.bluetoothIn = manejadorMensajes_PrimaryThread();
+         this.bluetoothIn = manejadorMensajes_PrimaryThread();
     }
 
     @Override
     //Cuando se ejecuta el evento onPause se cierra el socket Bluethoot, para no recibiendo datos
     public void onPause() {
         super.onPause();
+        /*
         try
         {
             //Don't leave Bluetooth sockets open when leaving activity
@@ -217,6 +218,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
         } catch (IOException e2) {
             //insert code to deal with this
         }
+         */
     }
 
     @Override
@@ -227,40 +229,37 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
 
         Intent intent=getIntent();
         Bundle extras=intent.getExtras();
-        Log.i(TAG, "extraaaas  "+extras);
+        Log.i(TAG, "Extra recibido de redireccion  "+extras);
         address = extras.getString("Direccion_Bluethoot");
-        Log.i(TAG, "Adresss "+address);
-         BluetoothDevice device = btAdapter.getRemoteDevice(address);
-
-        try {
-            btSocket = createBluetoothSocket(device);
-        }
-        catch (IOException e) {
-            showToast( "La creacción del Socket fallo");
-        }
-        // Establish the Bluetooth socket connection.
-        try {
-            btSocket.connect();
-        }
-        catch (IOException e) {
-            try {
-                btSocket.close();
-            }
-            catch (IOException e2) {
-                //insert code to deal with this
-            }
-        }
+        Log.i(TAG, "Adresss recibida desde PANTALLA MAIN "+address);
+        btSocket = creationSocketByDevice(address);
 
         // Va  recibir datos
         mConnectedThread = new ConnectedThread(btSocket);
+        Log.i(TAG, "Thread creado: " + mConnectedThread);
         mConnectedThread.start();
-
+        Log.i(TAG, "Thread started  "+mConnectedThread);
         // Mando un caracter al hacer onResume para chequear la conexion del dispositivo.
         // Si no tira excepcion esta bien. Va a lanzar el metodo WRITE o FINISH
         // Depaso pido la luminosidad actual para plasmarla en la pantalla.
-        mConnectedThread.write("1");
+        mConnectedThread.write("3");
+        Log.i(TAG, "Thread ya ha ejecutado write  "+mConnectedThread);
     }
 
+    private BluetoothSocket creationSocketByDevice(String address){
+        BluetoothSocket socketResult = null;
+
+        BluetoothDevice device = btAdapter.getRemoteDevice(address);
+        try {
+            socketResult = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+            socketResult.connect();
+        Log.i("[BLUETOOTH]","Connected to: "+device.getName());
+        }catch(IOException e){
+            try{socketResult.close();}catch(IOException c){return socketResult;}
+        }
+
+        return socketResult;
+    }
     //Handler que sirve que permite mostrar datos en el Layout al hilo secundario
     private Handler manejadorMensajes_PrimaryThread () {
          @SuppressLint("HandlerLeak") Handler handlerObject = new Handler() {
@@ -268,6 +267,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             public void handleMessage(android.os.Message msg)
             {
                 // Manejo mensaje recibido a travez del Thread secundario
+                Log.i(TAG,"Se recibio un dato desde el SE"+msg);
                 if (msg.what == handlerState) {
                     // Lo unico que recibo es luminosidad actual
                     // Caso para UN mensaje recibido desde el dispositivo.
@@ -281,7 +281,14 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
 
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
         // Crear el socket para comunicacion por BT
-        return  device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+        BluetoothSocket socketCreado = null;
+        try{
+            Log.i(TAG,"Intenta crear socket con device: "+ device.getName());
+            socketCreado = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+        }catch(Exception e){
+            Log.i(TAG,"Excepcion al crear socket "+e);
+        }
+        return socketCreado;
     }
 
     private class ConnectedThread extends Thread {
@@ -332,9 +339,9 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
                 mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
             } catch (IOException e) {
                 //if you cannot write, close the application
-                showToast("La conexion fallo");
+                Log.i(TAG, "Excepcion al enviar datos "+e );
+                showToast("Error al mandar datos al SE");
                 finish();
-
             }
         }
     }

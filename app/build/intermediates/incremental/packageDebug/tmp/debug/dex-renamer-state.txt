@@ -1,4 +1,4 @@
-#Sun Nov 06 12:40:23 ART 2022
+#Mon Nov 07 20:57:41 ART 2022
 base.0=D\:\\PERSONALES\\android\\soa_2022_android_l3\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 renamed.0=classes.dex
 path.0=classes.dex
