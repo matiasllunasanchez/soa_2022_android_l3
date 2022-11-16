@@ -117,13 +117,14 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     }
 
     @Override
-    public void setCurrentColor(int value, String hexColor) {
+    public void setCurrentColor(int value, String hexColor, int codeColor) {
         this.txtColorSelected.setText(hexColor);
         this.setLampColor(hexColor);
         this.imgCurrentLed.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
 
         // Se manda por BT el valor del color cambiado
-        this.mConnectedThread.write(String.valueOf(value));
+        Log.i(TAG,"Color a mandar "+codeColor);
+         this.mConnectedThread.write(String.valueOf(codeColor));
         Context context = getApplicationContext();
         CharSequence text = "¡Cambió el color del led!";
         int duration = Toast.LENGTH_SHORT;
@@ -165,7 +166,7 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 
@@ -228,7 +229,8 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
 
         mConnectedThread = new SecondaryActivity.ConnectedThread(btSocket);
         mConnectedThread.start();
-        mConnectedThread.write("1");
+        mConnectedThread.write("6");
+        Log.i(TAG,"Seteo blanco color inicial de led al SE");
         super.onResume();
 
     }
@@ -259,7 +261,7 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
 
         // Metodo para enviar / escribir en el dispositivo
         public void write(String input) {
-
+            Log.i(TAG,"Write con color: "+ input);
             byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
 
             try {

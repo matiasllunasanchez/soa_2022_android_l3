@@ -23,15 +23,19 @@ public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
     public void generateColor(SecondaryActivityContract.ModelMVP.OnSendToPresenter presenter) {
         int newColor = new Random().nextInt(6 - 3 + 1) + 3;
         int resultColor = 0;
+        int codeColor = 6;
         switch (newColor) {
             case RED_COLOR:
                 resultColor = Color.argb(ALPHA, 255, 0, 0);
+                codeColor = 3;
                 break;
             case GREEN_COLOR:
                 resultColor = Color.argb(255, 0, 255, 0);
+                codeColor = 4;
                 break;
             case BLUE_COLOR:
                 resultColor = Color.argb(255, 0, 0, 255);
+                codeColor = 5;
                 break;
             case WHITE_COLOR:
                 resultColor = Color.argb(255, 255, 255, 255);
@@ -43,6 +47,6 @@ public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
         this.savedColor = resultColor;
         // TODO: 1 - Enviar al SE el color a setear del led. Enviar valor 3 4 o 5
         Log.i(TAG, "Enviar al SE el color a setear para el led RGB. Valor de color: " + resultColor);
-        presenter.handleShakerResult(resultColor);
+        presenter.handleShakerResult(resultColor, codeColor);
     }
 }

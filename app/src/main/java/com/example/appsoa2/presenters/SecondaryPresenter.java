@@ -31,9 +31,9 @@ public class SecondaryPresenter implements SecondaryActivityContract.ModelMVP.On
     }
 
     @Override
-    public void handleShakerResult(int value) {
+    public void handleShakerResult(int value, int codeColor) {
          String hexColor = String.format("#%06X", (0xFFFFFF & value));
-        this.mainView.setCurrentColor(value, hexColor);
+        this.mainView.setCurrentColor(value, hexColor, codeColor);
     }
 }
 
