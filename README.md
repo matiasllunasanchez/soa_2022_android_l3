@@ -13,5 +13,12 @@ Es la pantalla referida al cambio de color de led y la utilización del sensor a
 
 Todas las pantallas cuentan con una imagen descriptiva de la acción realizada, siendo la intensidad luminica representada por los rayitos alrededor de la lampara y en la segunda pantalla el color del led afectando literalmente a la imagen de la lampara.
 
-### PENDIENTE:
-- Todavía no está implementado el envío de datos por BT hacia el dispositivo.
+
+1 - Solicita iluminacion actual
+2 - Solicita iluminacion deseada a la que se va a ajustar
+3 - Cambiar color a rojo
+4 - Cambiar color a verde
+5 - Cambiar color a azul+
+6 - Cambiar color a blanco
+
+9 + (Luminosidad requerida de 0 a 100) = Mandar luminosidad deseada
