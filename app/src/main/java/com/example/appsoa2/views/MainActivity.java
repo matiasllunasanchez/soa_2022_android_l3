@@ -170,7 +170,6 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 	//Handler que captura los brodacast que emite el SO al ocurrir los eventos del bluethoot
 	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 		public void onReceive(Context context, Intent intent) {
-
 			//Atraves del Intent obtengo el evento de Bluethoot que informo el broadcast del SO
 			String action = intent.getAction();
 			handleBluetoothEvent(intent, action);
@@ -383,7 +382,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
 	@Override
 	public void onResume() {
-		showToast("ON Resume!!");
+		showToast("Pantalla lista");
 		if(primaryDevice == null){
 			if(mBluetoothAdapter == null){
 				mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();

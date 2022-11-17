@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 
 import net.londatiga.android.bluetooth.R;
+
 import com.example.appsoa2.interfaces.PrimaryActivityContract;
 import com.example.appsoa2.presenters.PrimaryPresenter;
 import com.example.appsoa2.views.components.MinMaxFilter;
@@ -90,9 +91,9 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
 
                 // Mando 9 y luego el valor del 0 al 100.
                 // Falta limitar esto de 10 a 90
-                int lightResultValue = lightValue >= 90 ? 89 : lightValue<10? 10: lightValue;
-                String lightLevelResult= "9"+String.valueOf(lightResultValue);
-                Log.i(TAG,"Luminosidad enviada al SE: " + lightLevelResult);
+                int lightResultValue = lightValue >= 90 ? 89 : lightValue < 10 ? 10 : lightValue;
+                String lightLevelResult = "9" + String.valueOf(lightResultValue);
+                Log.i(TAG, "Luminosidad enviada al SE: " + lightLevelResult);
                 mConnectedThread.write(lightLevelResult);
                 showToast("Luminosidad deseada enviada");
             }
@@ -201,24 +202,21 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     }
 
     // Bluetooth zone
-    private void initializeBluetoothModule(){
+    private void initializeBluetoothModule() {
         this.btAdapter = BluetoothAdapter.getDefaultAdapter();
         //defino el Handler de comunicacion entre el hilo Principal  el secundario.
         //El hilo secundario va a mostrar informacion al layout atraves utilizando indeirectamente a este handler
-         this.bluetoothIn = manejadorMensajes_PrimaryThread();
+        this.bluetoothIn = manejadorMensajes_PrimaryThread();
     }
 
     @Override
     //Cuando se ejecuta el evento onPause se cierra el socket Bluethoot, para no recibiendo datos
     public void onPause() {
         super.onPause();
-
-        try
-        {
-            //Don't leave Bluetooth sockets open when leaving activity
+        try {
             btSocket.close();
         } catch (IOException e2) {
-            //insert code to deal with this
+            Log.i("[Socket]","Exception closing socket: "+e2);
         }
 
     }
@@ -229,69 +227,73 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     public void onResume() {
         super.onResume();
 
-        Intent intent=getIntent();
-        Bundle extras=intent.getExtras();
-        Log.i(TAG, "Extra recibido de redireccion  "+extras);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        Log.i(TAG, "Extra recibido de redireccion  " + extras);
         address = extras.getString("Direccion_Bluethoot");
-        Log.i(TAG, "Adresss recibida desde PANTALLA MAIN "+address);
+        Log.i(TAG, "Adresss recibida desde PANTALLA MAIN " + address);
         btSocket = creationSocketByDevice(address);
 
         // Va  recibir datos
         mConnectedThread = new ConnectedThread(btSocket);
         Log.i(TAG, "Thread creado: " + mConnectedThread);
         mConnectedThread.start();
-        Log.i(TAG, "Thread started  "+mConnectedThread);
+        Log.i(TAG, "Thread started  " + mConnectedThread);
         // Mando un caracter al hacer onResume para chequear la conexion del dispositivo.
         // Si no tira excepcion esta bien. Va a lanzar el metodo WRITE o FINISH
         // Depaso pido la luminosidad actual para plasmarla en la pantalla.
         mConnectedThread.write("1");
     }
 
-    private BluetoothSocket creationSocketByDevice(String address){
+    private BluetoothSocket creationSocketByDevice(String address) {
         BluetoothSocket socketResult = null;
 
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
         try {
             socketResult = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
             socketResult.connect();
-        Log.i("[BLUETOOTH]","Connected to: "+device.getName());
-        }catch(IOException e){
-            try{socketResult.close();}catch(IOException c){return socketResult;}
+            Log.i("[BLUETOOTH]", "Connected to: " + device.getName());
+        } catch (IOException e) {
+            Log.i("[BLUETOOTH]", "Exception connecting socket: " + e);
+            try {
+                socketResult.close();
+            } catch (IOException c) {
+                Log.i("[BLUETOOTH]", "Exception closing socket: " + e);
+                return socketResult;
+            }
         }
 
         return socketResult;
     }
+
     //Handler que sirve que permite mostrar datos en el Layout al hilo secundario
-    private Handler manejadorMensajes_PrimaryThread () {
-         @SuppressLint("HandlerLeak") Handler handlerObject = new Handler() {
+    private Handler manejadorMensajes_PrimaryThread() {
+        @SuppressLint("HandlerLeak") Handler handlerObject = new Handler() {
             @SuppressLint("HandlerLeak")
-            public void handleMessage(android.os.Message msg)
-            {
+            public void handleMessage(android.os.Message msg) {
                 // Manejo mensaje recibido a travez del Thread secundario
 
-                Log.i(TAG,"Se recibio un dato desde el SE "+msg.obj);
+                Log.i(TAG, "Se recibio un dato desde el SE " + msg.obj);
 
                 // Lo unico que recibo es luminosidad actual
                 // Caso para UN mensaje recibido desde el dispositivo.
-                if (msg.what == handlerState)
-                {
+                if (msg.what == handlerState) {
                     //voy concatenando el msj
                     String readMessage = (String) msg.obj;
                     boolean isNumber = isNumericOrEOF(readMessage);
-                    Log.i(TAG,"Es numero? :  "+ isNumber);
-                    if(isNumber){
-                        Log.i(TAG,"Es numero o EOF "+readMessage);
+                    Log.i(TAG, "Es numero? :  " + isNumber);
+                    if (isNumber) {
+                        Log.i(TAG, "Es numero o EOF " + readMessage);
                         recDataString.append(readMessage);
 
                         int endOfLineIndex = recDataString.indexOf("#");
                         //cuando recibo toda una linea la muestro en el layout
-                        Log.i(TAG,"Indice de end:  "+ endOfLineIndex);
-                        if (endOfLineIndex > -1)
-                        {
+                        Log.i(TAG, "Indice de end:  " + endOfLineIndex);
+                        if (endOfLineIndex > -1) {
                             String dataInPrint = recDataString.substring(0, endOfLineIndex);
                             recDataString.delete(0, recDataString.length());
-                            Log.i(TAG,"Rec final a leer:  "+ recDataString);
-                            Log.i(TAG,"dataInPrint final a leer:  "+ dataInPrint);
+                            Log.i(TAG, "Rec final a leer:  " + recDataString);
+                            Log.i(TAG, "dataInPrint final a leer:  " + dataInPrint);
                             int currentLightLevel = Integer.parseInt(String.valueOf(dataInPrint));
                             presenter.saveInputValue(currentLightLevel);
                             showToast("Luminosidad actualizada");
@@ -309,7 +311,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             return false;
         }
 
-        if(strNum.indexOf("#")>-1)
+        if (strNum.indexOf("#") > -1)
             return true;
         try {
             double d = Double.parseDouble(strNum);
@@ -322,11 +324,11 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
         // Crear el socket para comunicacion por BT
         BluetoothSocket socketCreado = null;
-        try{
-            Log.i(TAG,"Intenta crear socket con device: "+ device.getName());
+        try {
+            Log.i(TAG, "Intenta crear socket con device: " + device.getName());
             socketCreado = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
-        }catch(Exception e){
-            Log.i(TAG,"Excepcion al crear socket "+e);
+        } catch (Exception e) {
+            Log.i(TAG, "Excepcion al crear socket " + e);
         }
         return socketCreado;
     }
@@ -344,7 +346,8 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
                 //Create I/O streams for connection
                 tmpIn = socket.getInputStream();
                 tmpOut = socket.getOutputStream();
-            } catch (IOException e) { }
+            } catch (IOException e) {
+            }
 
             mmInStream = tmpIn;
             mmOutStream = tmpOut;
@@ -355,14 +358,12 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             byte[] buffer = new byte[256];
             int bytes;
 
-            while (true)
-            { // Queda espearndo mensajes desde el dispositivo.
-                try
-                {
+            while (true) { // Queda espearndo mensajes desde el dispositivo.
+                try {
                     //se leen los datos del Bluethoot
                     bytes = mmInStream.read(buffer);
                     String readMessage = new String(buffer, 0, bytes);
-                    Log.i(TAG,"Read de buffer: "+ readMessage);
+                    Log.i(TAG, "Read de buffer: " + readMessage);
 
                     bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
                     // Log.i(TAG,"Bluetooth in: "+ bluetoothIn);
@@ -377,10 +378,10 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
             try {
                 mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
-                Log.i(TAG,"Write a SE con valor: "+ input);
+                Log.i(TAG, "Write a SE con valor: " + input);
             } catch (IOException e) {
                 //if you cannot write, close the application
-                Log.i(TAG, "Excepcion al enviar datos "+e );
+                Log.i(TAG, "Excepcion al enviar datos " + e);
                 showToast("Error al mandar datos al SE");
                 finish();
             }
