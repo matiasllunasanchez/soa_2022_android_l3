@@ -40,6 +40,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     private static final int EMPTY_LIGHT_VALUE = 0;
     private static final int MEDIUM_LIGHT_VALUE = 65;
 
+    private StringBuilder recDataString = new StringBuilder();
     private Button btnSave, btnBack, btnRefresh;
     private TextView txtCurrentLightLevel;
     private EditText inputTextbox;
@@ -85,12 +86,15 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             @Override
             public void onClick(View view) {
                 int lightValue = Integer.parseInt(String.valueOf(inputTextbox.getText()));
-                presenter.saveInputValue(lightValue);
+                // presenter.saveInputValue(lightValue);
+
                 // Mando 9 y luego el valor del 0 al 100.
                 // Falta limitar esto de 10 a 90
-                mConnectedThread.write("9");
-                int lightResultValue = lightValue > 90 ? 90 : lightValue<10? 10: lightValue;
-                mConnectedThread.write(String.valueOf(lightResultValue));
+                int lightResultValue = lightValue >= 90 ? 89 : lightValue<10? 10: lightValue;
+                String lightLevelResult= "9"+String.valueOf(lightResultValue);
+                Log.i(TAG,"Luminosidad enviada al SE: " + lightLevelResult);
+                mConnectedThread.write(lightLevelResult);
+                showToast("Luminosidad deseada enviada");
             }
         });
 
@@ -111,7 +115,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             @Override
             public void onClick(View view) {
                 // Solicito luminosidad actual
-                mConnectedThread.write("3");
+                mConnectedThread.write("1");
             }
         });
 
@@ -172,8 +176,6 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     @Override
     public void setResultValue(int value) {
         Log.i(TAG, "Se guardo valor de luz: " + value);
-        Log.i(TAG, "Estee " + EMPTY_LIGHT_VALUE);
-        // this.setLampLevel(value);
         this.txtCurrentLightLevel.setText("Porcentaje de luz: " + String.valueOf(value) + "%");
         this.setLampLevel(value);
     }
@@ -210,7 +212,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     //Cuando se ejecuta el evento onPause se cierra el socket Bluethoot, para no recibiendo datos
     public void onPause() {
         super.onPause();
-        /*
+
         try
         {
             //Don't leave Bluetooth sockets open when leaving activity
@@ -218,7 +220,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
         } catch (IOException e2) {
             //insert code to deal with this
         }
-         */
+
     }
 
     @Override
@@ -242,8 +244,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
         // Mando un caracter al hacer onResume para chequear la conexion del dispositivo.
         // Si no tira excepcion esta bien. Va a lanzar el metodo WRITE o FINISH
         // Depaso pido la luminosidad actual para plasmarla en la pantalla.
-        mConnectedThread.write("3");
-        Log.i(TAG, "Thread ya ha ejecutado write  "+mConnectedThread);
+        mConnectedThread.write("1");
     }
 
     private BluetoothSocket creationSocketByDevice(String address){
@@ -267,16 +268,55 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             public void handleMessage(android.os.Message msg)
             {
                 // Manejo mensaje recibido a travez del Thread secundario
-                Log.i(TAG,"Se recibio un dato desde el SE"+msg);
-                if (msg.what == handlerState) {
-                    // Lo unico que recibo es luminosidad actual
-                    // Caso para UN mensaje recibido desde el dispositivo.
-                    int currentLightLevel = (int) msg.obj;
-                    presenter.saveInputValue(currentLightLevel);
+
+                Log.i(TAG,"Se recibio un dato desde el SE "+msg.obj);
+
+                // Lo unico que recibo es luminosidad actual
+                // Caso para UN mensaje recibido desde el dispositivo.
+                if (msg.what == handlerState)
+                {
+                    //voy concatenando el msj
+                    String readMessage = (String) msg.obj;
+                    boolean isNumber = isNumericOrEOF(readMessage);
+                    Log.i(TAG,"Es numero? :  "+ isNumber);
+                    if(isNumber){
+                        Log.i(TAG,"Es numero o EOF "+readMessage);
+                        recDataString.append(readMessage);
+
+                        int endOfLineIndex = recDataString.indexOf("#");
+                        //cuando recibo toda una linea la muestro en el layout
+                        Log.i(TAG,"Indice de end:  "+ endOfLineIndex);
+                        if (endOfLineIndex > -1)
+                        {
+                            String dataInPrint = recDataString.substring(0, endOfLineIndex);
+                            recDataString.delete(0, recDataString.length());
+                            Log.i(TAG,"Rec final a leer:  "+ recDataString);
+                            Log.i(TAG,"dataInPrint final a leer:  "+ dataInPrint);
+                            int currentLightLevel = Integer.parseInt(String.valueOf(dataInPrint));
+                            presenter.saveInputValue(currentLightLevel);
+                            showToast("Luminosidad actualizada");
+                        }
+                    }
                 }
             }
         };
         return handlerObject;
+
+    }
+
+    private boolean isNumericOrEOF(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+
+        if(strNum.indexOf("#")>-1)
+            return true;
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
@@ -322,10 +362,10 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
                     //se leen los datos del Bluethoot
                     bytes = mmInStream.read(buffer);
                     String readMessage = new String(buffer, 0, bytes);
+                    Log.i(TAG,"Read de buffer: "+ readMessage);
 
-                    //se muestran en el layout de la activity, utilizando el handler del hilo
-                    // principal antes mencionado
                     bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
+                    // Log.i(TAG,"Bluetooth in: "+ bluetoothIn);
                 } catch (IOException e) {
                     break;
                 }
@@ -337,6 +377,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
             byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
             try {
                 mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
+                Log.i(TAG,"Write a SE con valor: "+ input);
             } catch (IOException e) {
                 //if you cannot write, close the application
                 Log.i(TAG, "Excepcion al enviar datos "+e );
