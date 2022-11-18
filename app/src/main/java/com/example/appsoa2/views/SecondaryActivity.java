@@ -43,6 +43,13 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     private Button  btnBack;
     private TextView txtColorSelected;
     private ImageView imgCurrentLed;
+    private static final String RED_COLOR_HEX = "#FF0000";
+    private static final String GREEN_COLOR_HEX = "#00FF00";
+    private static final String BLUE_COLOR_HEX = "0000FF";
+    private static final String WHITE_COLOR_HEX = "FFFFFF";
+    private ImageView lampImg;
+
+/*
     private SensorManager sensorManager;
     private Sensor sensorAccelerometer;
     private static final float SHAKE_THRESHOLD = 5f;
@@ -50,11 +57,7 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     private boolean notFirstMove = false;
     private float xDiff, yDiff, zDiff;
     private Vibrator vibratorObj;
-    private static final String RED_COLOR_HEX = "#FF0000";
-    private static final String GREEN_COLOR_HEX = "#00FF00";
-    private static final String BLUE_COLOR_HEX = "0000FF";
-    private static final String WHITE_COLOR_HEX = "FFFFFF";
-    private ImageView lampImg;
+*/
 
     // Bluetooth Stuff
     Handler bluetoothIn;
@@ -63,14 +66,11 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     private BluetoothSocket btSocket = null;
     private StringBuilder recDataString = new StringBuilder();
     private SecondaryActivity.ConnectedThread mConnectedThread;
-    // SPP UUID service  - Funciona en la mayoria de los dispositivos
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    // String for MAC address del Hc05
     private static String address = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_secondary);
@@ -79,16 +79,17 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
 
     private void initialize() {
         this.initializeButtons();
-        this.initializeLabels();
-        this.initializeOthers();
+        this.initializeRest();
         presenter = new SecondaryPresenter(this);
+        presenter.getReadyLogic(this);
         this.initializeBluetoothModule();
         Log.i(TAG, "Paso al estado Createad");
     }
 
-    private void initializeLabels() {
+    private void initializeRest() {
         this.txtColorSelected = this.findViewById(R.id.text_ledColorSelected);
         this.txtColorSelected.setText("-");
+        this.lampImg = (ImageView) this.findViewById(R.id.image_secondary_led);
     }
 
     private void initializeButtons() {
@@ -109,18 +110,19 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     }
 
     private void initializeOthers() {
-        this.imgCurrentLed = findViewById(R.id.image_secondary_led);
+        // this.imgCurrentLed = findViewById(R.id.image_secondary_led);
+/*
         this.sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         this.sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         this.vibratorObj = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        this.lampImg = (ImageView) this.findViewById(R.id.image_secondary_led);
+*/
     }
 
     @Override
     public void setCurrentColor(int value, String hexColor, int codeColor) {
         this.txtColorSelected.setText(hexColor);
         this.setLampColor(hexColor);
-        this.imgCurrentLed.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
+        this.lampImg.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
 
         // Se manda por BT el valor del color cambiado
         Log.i(TAG,"Color a mandar "+codeColor);
@@ -136,33 +138,7 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     @SuppressLint("WrongConstant")
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-
-        currentPositionX = sensorEvent.values[0];
-        currentPositionY = sensorEvent.values[1];
-        currentPositionZ = sensorEvent.values[2];
-
-        if (notFirstMove) {
-
-            xDiff = Math.abs(lastPositionX - currentPositionX);
-            yDiff = Math.abs(lastPositionY - currentPositionY);
-            zDiff = Math.abs(lastPositionZ - currentPositionZ);
-
-            if ((xDiff > SHAKE_THRESHOLD && yDiff > SHAKE_THRESHOLD) || (yDiff > SHAKE_THRESHOLD && zDiff > SHAKE_THRESHOLD) || (xDiff > SHAKE_THRESHOLD && zDiff > SHAKE_THRESHOLD)) {
-                // SHAKE EVENT!
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibratorObj.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                } else {
-                    vibratorObj.vibrate(500);
-                }
-                presenter.shakeEventHandler();
-            }
-
-        }
-        lastPositionX = currentPositionX;
-        lastPositionY = currentPositionY;
-        lastPositionZ = currentPositionZ;
-        notFirstMove = true;
+        this.presenter.movementDetected(sensorEvent);
     }
 
     @Override
@@ -203,24 +179,16 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     //Cuando se ejecuta el evento onPause se cierra el socket Bluethoot, para no recibiendo datos
     public void onPause() {
         super.onPause();
-        try
-        {
-            //Don't leave Bluetooth sockets open when leaving activity
-            btSocket.close();
-        } catch (IOException e2) {
-            //insert code to deal with this
-        }
-        this.sensorManager.unregisterListener(this);
+        this.presenter.safeDisconnect(this);
     }
 
     @Override
     public void onResume() {
-        this.sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        this.presenter.gerReadyLogicAgain(this);
 
         //Obtengo el parametro, aplicando un Bundle, que me indica la Mac Adress del HC05
         Intent intent=getIntent();
         Bundle extras=intent.getExtras();
-
         address= extras.getString("Direccion_Bluethoot");
 
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
