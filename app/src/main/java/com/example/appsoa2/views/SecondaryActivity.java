@@ -49,16 +49,6 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     private static final String WHITE_COLOR_HEX = "FFFFFF";
     private ImageView lampImg;
 
-/*
-    private SensorManager sensorManager;
-    private Sensor sensorAccelerometer;
-    private static final float SHAKE_THRESHOLD = 5f;
-    private float currentPositionX, currentPositionY, currentPositionZ, lastPositionX, lastPositionY, lastPositionZ;
-    private boolean notFirstMove = false;
-    private float xDiff, yDiff, zDiff;
-    private Vibrator vibratorObj;
-*/
-
     // Bluetooth Stuff
     Handler bluetoothIn;
     final int handlerState = 0; //used to identify handler message
@@ -107,15 +97,6 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
                 }
             }
         });
-    }
-
-    private void initializeOthers() {
-        // this.imgCurrentLed = findViewById(R.id.image_secondary_led);
-/*
-        this.sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        this.sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        this.vibratorObj = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-*/
     }
 
     @Override
