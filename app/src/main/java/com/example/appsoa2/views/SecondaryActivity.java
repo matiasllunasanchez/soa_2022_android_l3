@@ -2,24 +2,13 @@ package com.example.appsoa2.views;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,19 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.londatiga.android.bluetooth.R;
+
 import com.example.appsoa2.interfaces.SecondaryActivityContract;
 import com.example.appsoa2.presenters.SecondaryPresenter;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.UUID;
 
 public class SecondaryActivity extends Activity implements SecondaryActivityContract.ViewMVP, SensorEventListener {
     private static final String TAG = "SecondaryActivity";
     private SecondaryActivityContract.PresenterMVP presenter;
 
-    private Button  btnBack;
+    private Button btnBack;
     private TextView txtColorSelected;
     private ImageView imgCurrentLed;
     private static final String RED_COLOR_HEX = "#FF0000";
@@ -48,16 +33,6 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
     private static final String BLUE_COLOR_HEX = "0000FF";
     private static final String WHITE_COLOR_HEX = "FFFFFF";
     private ImageView lampImg;
-
-    // Bluetooth Stuff
-    Handler bluetoothIn;
-    final int handlerState = 0; //used to identify handler message
-    private BluetoothAdapter btAdapter = null;
-    private BluetoothSocket btSocket = null;
-    private StringBuilder recDataString = new StringBuilder();
-    private SecondaryActivity.ConnectedThread mConnectedThread;
-    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    private static String address = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +47,6 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
         this.initializeRest();
         presenter = new SecondaryPresenter(this);
         presenter.getReadyLogic(this);
-        this.initializeBluetoothModule();
-        Log.i(TAG, "Paso al estado Createad");
     }
 
     private void initializeRest() {
@@ -104,16 +77,9 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
         this.txtColorSelected.setText(hexColor);
         this.setLampColor(hexColor);
         this.lampImg.setColorFilter(value, PorterDuff.Mode.SRC_ATOP);
-
-        // Se manda por BT el valor del color cambiado
-        Log.i(TAG,"Color a mandar "+codeColor);
-         this.mConnectedThread.write(String.valueOf(codeColor));
-        Context context = getApplicationContext();
-        CharSequence text = "¡Cambió el color del led!";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        Log.i(TAG, "Color a mandar al SE " + codeColor);
+        this.presenter.sendColorToDevice(String.valueOf(codeColor));
+        showToast("¡Cambió el color del led!");
     }
 
     @SuppressLint("WrongConstant")
@@ -151,13 +117,7 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    // Bluetooth zone
-    private void initializeBluetoothModule(){
-        this.btAdapter = BluetoothAdapter.getDefaultAdapter();
-    }
-
     @Override
-    //Cuando se ejecuta el evento onPause se cierra el socket Bluethoot, para no recibiendo datos
     public void onPause() {
         super.onPause();
         this.presenter.safeDisconnect(this);
@@ -165,77 +125,13 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
 
     @Override
     public void onResume() {
-        this.presenter.gerReadyLogicAgain(this);
-
-        //Obtengo el parametro, aplicando un Bundle, que me indica la Mac Adress del HC05
-        Intent intent=getIntent();
-        Bundle extras=intent.getExtras();
-        address= extras.getString("Direccion_Bluethoot");
-
-        BluetoothDevice device = btAdapter.getRemoteDevice(address);
-
-        btSocket = creationSocketByDevice(address);
-
-        mConnectedThread = new SecondaryActivity.ConnectedThread(btSocket);
-        mConnectedThread.start();
-        mConnectedThread.write("6");
-        Log.i(TAG,"Seteo blanco color inicial de led al SE");
+        this.presenter.getReadyLogicAgain(this);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String address = extras.getString("Direccion_Bluethoot");
+        this.presenter.reconnectDevice(address);
+        Log.i(TAG, "Reconecto dispositivo y seteo color al LED");
         super.onResume();
-
     }
 
-    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
-        // Crear el socket para comunicacion por BT
-        return  device.createRfcommSocketToServiceRecord(BTMODULEUUID);
-    }
-
-    private class ConnectedThread extends Thread {
-        private final InputStream mmInStream;
-        private final OutputStream mmOutStream;
-
-        //Constructor de la clase del Thread Secondary
-        public ConnectedThread(BluetoothSocket socket) {
-            InputStream tmpIn = null;
-            OutputStream tmpOut = null;
-
-            try {
-                //Create I/O streams for connection
-                tmpIn = socket.getInputStream();
-                tmpOut = socket.getOutputStream();
-            } catch (IOException e) { }
-
-            mmInStream = tmpIn;
-            mmOutStream = tmpOut;
-        }
-
-        // Metodo para enviar / escribir en el dispositivo
-        public void write(String input) {
-            Log.i(TAG,"Write con color: "+ input);
-            byte[] msgBuffer = input.getBytes();           //converts entered String into bytes
-
-            try {
-                Log.i(TAG, "Paso al estado Createad");
-                mmOutStream.write(msgBuffer);                //write bytes over BT connection via outstream
-            } catch (IOException e) {
-                //if you cannot write, close the application
-                showToast("Error al mandar datos al SE");
-                finish();
-
-            }
-        }
-    }
-
-    private BluetoothSocket creationSocketByDevice(String address){
-        BluetoothSocket socketResult = null;
-
-        BluetoothDevice device = btAdapter.getRemoteDevice(address);
-        try {
-            socketResult = device.createRfcommSocketToServiceRecord(BTMODULEUUID);
-            socketResult.connect();
-            Log.i("[BLUETOOTH]","Connected to: "+device.getName());
-        }catch(IOException e){
-            try{socketResult.close();}catch(IOException c){return socketResult;}
-        }
-        return socketResult;
-    }
 }

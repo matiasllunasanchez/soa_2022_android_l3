@@ -21,6 +21,12 @@ public interface SecondaryActivityContract {
 
         void reconnectSensors(SecondaryActivity secondaryActivity);
 
+        void getReadyBluetooth(Context context);
+
+        void reconnectBluetoothDevice(String address);
+
+        void sendLedColorValue(String valueOf);
+
         interface OnSendToPresenter {
             void handleShakerResult(int resultColor, int value);
         }
@@ -37,6 +43,10 @@ public interface SecondaryActivityContract {
 
         void safeDisconnect(SecondaryActivity secondaryActivity);
 
-        void gerReadyLogicAgain(SecondaryActivity secondaryActivity);
+        void getReadyLogicAgain(SecondaryActivity secondaryActivity);
+
+        void reconnectDevice(String address);
+
+        void sendColorToDevice(String valueOf);
     }
 }
