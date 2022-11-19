@@ -32,5 +32,25 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
     public void saveInputValue(int i) {
         this.model.saveLightLevel(this, i);
     }
+
+    @Override
+    public void getReadyLogic() {
+        this.model.getReadyBluetooth(this);
+    }
+
+    @Override
+    public void reconnectDevice(String macAddress) {
+        this.model.reconnectBluetoothDevice(macAddress);
+    }
+
+    @Override
+    public void sendLightLevelValue(int lightValue) {
+        this.model.sendLevelValueToDevice(lightValue);
+    }
+
+    @Override
+    public void getCurrentLevelLight() {
+        this.model.getCurrentLightLevel();
+    }
 }
 

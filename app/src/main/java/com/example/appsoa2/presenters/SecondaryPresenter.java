@@ -34,7 +34,6 @@ public class SecondaryPresenter implements SecondaryActivityContract.ModelMVP.On
 
     @Override
     public void getReadyLogic(Context context) {
-
         this.model.getReadySensors(context);
         this.model.getReadyBluetooth(context);
     }

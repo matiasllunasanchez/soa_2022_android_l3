@@ -101,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Luminosidad actual:"
+        android:text="Luminosidad actual de la habitación:"
         android:textColor="#313848"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
