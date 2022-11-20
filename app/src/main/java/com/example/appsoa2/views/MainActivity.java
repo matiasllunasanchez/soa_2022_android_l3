@@ -168,12 +168,14 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
     @Override
     public void showResultOnToast(String msg) {
+        Log.i(TAG, "Mostrar en toast: "+msg);
         showToast(msg);
     }
 
     @Override
-    public void showResultOnLabel(String string) {
-        this.txtEstado.setText(string);
+    public void showResultOnLabel(String msg) {
+        Log.i(TAG, "Mostrar en label: "+msg);
+        this.txtEstado.setText(msg);
     }
 
     @Override

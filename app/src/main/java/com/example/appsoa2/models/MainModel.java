@@ -153,15 +153,14 @@ public class MainModel implements MainActivityContract.ModelMVP {
     }
 
     private void initializeBroadcastReceiver(Context context) {
-        //se definen un broadcastReceiver que captura el broadcast del SO cuando captura los siguientes eventos:
         IntentFilter filter = new IntentFilter();
 
-        filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED); //Cambia el estado del Bluethoot (Acrtivado /Desactivado)
-        filter.addAction(BluetoothDevice.ACTION_FOUND); //Se encuentra un dispositivo bluethoot al realizar una busqueda
-        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED); //Cuando se comienza una busqueda de bluethoot
-        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED); //cuando la busqueda de bluethoot finaliza
-        filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED); //Cuando se empareja o desempareja el bluethoot
-        //se define (registra) el handler que captura los broadcast anterirmente mencionados.
+        filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED); // Cambia el estado del Bluethoot (Activando /Desactivado)
+        filter.addAction(BluetoothDevice.ACTION_FOUND); // Se encuentra un dispositivo bluethoot al realizar una busqueda
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED); // Cuando se comienza una busqueda de bluethoot
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED); // Cuando la busqueda de bluethoot finaliza
+        filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED); // Cuando se empareja o desempareja el bluethoot
+        // Se define (registra) el handler que captura los broadcast anterirmente mencionados.
         context.registerReceiver(mReceiver, filter);
     }
 
@@ -172,6 +171,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
     private void handleBluetoothEvent(Intent intent, String action) {
         String response = null;
         if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
+            // Cambio el estado del bluetooth
             //Obtengo el parametro, aplicando un Bundle, que me indica el estado del Bluethoot
             final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
 
@@ -182,16 +182,16 @@ public class MainModel implements MainActivityContract.ModelMVP {
                 this.currentPresenter.showOnToast(response);
                 searchBluetoothDevices();
             } else {
-                response = "Necesitamos activar el bluetooth para funcionar";
+                response = "Debes activar el bluetooth para funcionar";
                 this.currentPresenter.showOnToast(response);
                 this.currentPresenter.askBTPermission(); // Revisar si vale la pena
             }
         }
-        //Si se inicio la busqueda de dispositivos bluethoot
         else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
+            // Arranco a buscar dispositivos
             this.currentPresenter.showLoadingDialog();
         } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-            //se cierra el cuadro de dialogo de busqueda
+            //Termino de buscar dispositivos
             this.currentPresenter.closeLoadingDialog();
 
             // connectPrimaryDevice();
@@ -202,17 +202,17 @@ public class MainModel implements MainActivityContract.ModelMVP {
             }
 
         }
-        //si se encontro un dispositivo bluethoot
         else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-            //Se lo agregan sus datos a una lista de dispositivos encontrados
+            //Cada vez que encuentro un dispositivo bluetooth cercano
+
             BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
             this.currentPresenter.showOnToast("Dispositivo cercano: " + device.getName());
             if (checkPrimaryDevice(device)) {
                 primaryDevice = device;
-                finishBluetoothSearch();
+                // finishBluetoothSearch();
             }
         } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
-            //Obtengo los parametro, aplicando un Bundle, que me indica el estado del Bluethoot
+            // Obtengo los parametro, aplicando un Bundle, que me indica el estado del Bluethoot
             final int state = intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.ERROR);
             final int prevState = intent.getIntExtra(BluetoothDevice.EXTRA_PREVIOUS_BOND_STATE, BluetoothDevice.ERROR);
 
@@ -221,8 +221,6 @@ public class MainModel implements MainActivityContract.ModelMVP {
                 this.currentPresenter.showOnToast("Proceso de conexion bt finalizado!");
                 BluetoothDevice dispositivo = (BluetoothDevice) primaryDevice;
                 //se inicia el Activity de comunicacion con el bluethoot, para transferir los datos.
-                //Para eso se le envia como parametro la direccion(MAC) del bluethoot Arduino
-                // ESTO LO TENGO QUE AHCER CUANDO PRESIONO UN BOTON PARA IR A UNA PANTALLA
 
             } else if (state == BluetoothDevice.BOND_NONE && prevState == BluetoothDevice.BOND_BONDED) {
                 this.currentPresenter.showOnToast("Dispositivo desemparejado");
