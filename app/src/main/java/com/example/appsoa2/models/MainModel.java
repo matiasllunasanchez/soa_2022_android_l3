@@ -75,18 +75,18 @@ public class MainModel implements MainActivityContract.ModelMVP {
     }
 
     @Override
-    public void permissionsGrantedProcess() {
-        enableComponent(); // Now you call here what ever you want :)
-        initializeBroadcastReceiver(currentContext);
-    }
-
-    @Override
     public void onPauseProcess() {
         if (mBluetoothAdapter != null) {
             if (mBluetoothAdapter.isDiscovering()) {
                 mBluetoothAdapter.cancelDiscovery();
             }
         }
+    }
+
+    @Override
+    public void permissionsGrantedProcess() {
+        enableComponent(); // Now you call here what ever you want :)
+        initializeBroadcastReceiver(currentContext);
     }
 
     @Override

@@ -24,11 +24,6 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
     }
 
     @Override
-    public void onDestroy() {
-        this.mainView = null;
-    }
-
-    @Override
     public void getReadyLogic(Context currentContext) {
         this.model.getReadyBluetooth(currentContext, this);
     }
@@ -39,9 +34,16 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
     }
 
     @Override
-    public void onDestroyActivity() {
-        this.model.onDestroyProcess();
-    }
+    public void onCreatedProcess() { }
+
+    @Override
+    public void onStartProcess() { }
+
+    @Override
+    public void onStopProcess() { }
+
+    @Override
+    public void onRestartProcess() { }
 
     @Override
     public void onResumeProcess() {
@@ -49,13 +51,19 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
     }
 
     @Override
-    public void permissionsGrantedProcess() {
-        this.model.permissionsGrantedProcess();
+    public void onDestroyProcess() {
+        this.model.onDestroyProcess();
+        this.mainView = null;
     }
 
     @Override
     public void onPauseProcess() {
         this.model.onPauseProcess();
+    }
+
+    @Override
+    public void permissionsGrantedProcess() {
+        this.model.permissionsGrantedProcess();
     }
 
     @Override
@@ -91,10 +99,6 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
     @Override
     public void showMessage(String string) {
         this.mainView.showResultOnLabel(string);
-    }
-
-    @Override
-    public void onInitialize() {
     }
 
     public void requestPermissions(List<String> listPermissionsNeeded) {

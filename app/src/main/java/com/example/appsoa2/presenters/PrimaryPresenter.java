@@ -15,15 +15,6 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
     }
 
     @Override
-    public void onInitialize() {
-    }
-
-    @Override
-    public void onDestroy() {
-        this.mainView = null;
-    }
-
-    @Override
     public void handleSavedResult(int value) {
         this.mainView.setResultValue(value);
     }
@@ -51,6 +42,41 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
     @Override
     public void getCurrentLevelLight() {
         this.model.getCurrentLightLevel();
+    }
+
+    @Override
+    public void onCreatedProcess() {
+
+    }
+
+    @Override
+    public void onStartProcess() {
+
+    }
+
+    @Override
+    public void onResumeProcess() {
+
+    }
+
+    @Override
+    public void onPauseProcess() {
+
+    }
+
+    @Override
+    public void onStopProcess() {
+
+    }
+
+    @Override
+    public void onRestartProcess() {
+
+    }
+
+    @Override
+    public void onDestroyProcess() {
+        this.mainView = null;
     }
 }
 

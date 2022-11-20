@@ -1,7 +1,11 @@
 package com.example.appsoa2.interfaces;
 
 public interface BasePresenter {
-    void onInitialize();
-
-    void onDestroy();
+    void onCreatedProcess();
+    void onStartProcess();
+    void onResumeProcess();
+    void onPauseProcess();
+    void onStopProcess();
+    void onRestartProcess();
+    void onDestroyProcess();
 }

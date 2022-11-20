@@ -131,7 +131,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
     @Override
     public void onDestroy() {
-        this.presenter.onDestroyActivity();
+        this.presenter.onDestroyProcess();
         super.onDestroy();
     }
 

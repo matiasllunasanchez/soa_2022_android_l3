@@ -19,15 +19,6 @@ public class SecondaryPresenter implements SecondaryActivityContract.ModelMVP.On
     }
 
     @Override
-    public void onInitialize() {
-    }
-
-    @Override
-    public void onDestroy() {
-        this.mainView = null;
-    }
-
-    @Override
     public void shakeEventHandler() {
         this.model.generateColor(this);
     }
@@ -68,6 +59,41 @@ public class SecondaryPresenter implements SecondaryActivityContract.ModelMVP.On
     public void handleShakerResult(int value, int codeColor) {
         String hexColor = String.format("#%06X", (0xFFFFFF & value));
         this.mainView.setCurrentColor(value, hexColor, codeColor);
+    }
+
+    @Override
+    public void onCreatedProcess() {
+
+    }
+
+    @Override
+    public void onStartProcess() {
+
+    }
+
+    @Override
+    public void onResumeProcess() {
+
+    }
+
+    @Override
+    public void onPauseProcess() {
+
+    }
+
+    @Override
+    public void onStopProcess() {
+
+    }
+
+    @Override
+    public void onRestartProcess() {
+
+    }
+
+    @Override
+    public void onDestroyProcess() {
+        this.mainView = null;
     }
 }
 

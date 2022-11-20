@@ -13,25 +13,17 @@ public interface MainActivityContract {
         void requestPermissionsToUser(List<String> listPermissionsNeeded);
         void closeDialog();
         void showLoadingDialog();
-
         void askBTPermissions();
     }
 
     interface ModelMVP {
         void getReadyBluetooth(Context mainActivity, MainPresenter presenter);
-
         void stopBluetoothDiscovery();
-
-        void onDestroyProcess();
-
-        void onResumeProcess();
-
         void permissionsGrantedProcess();
-
-        void onPauseProcess();
-
         String getConnnectedMacAddress();
-
+        void onDestroyProcess();
+        void onResumeProcess();
+        void onPauseProcess();
         interface OnSendToPresenter {
             void showMessage(String string);
             void showOnToast(String message);
@@ -44,22 +36,14 @@ public interface MainActivityContract {
         void processDataGetResult(MainActivityContract.ModelMVP.OnSendToPresenter presenter);
     }
 
-    interface PresenterMVP {
+    interface PresenterMVP extends BasePresenter {
         void onSendButtonClick();
-
-        void onDestroy();
 
         void getReadyLogic(Context context);
 
         void stopBluetoothSearch();
 
-        void onDestroyActivity();
-
-        void onResumeProcess();
-
         void permissionsGrantedProcess();
-
-        void onPauseProcess();
 
         String getConnectedDeviceAddress();
    /*     void showOnToast(String message);
