@@ -96,11 +96,6 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
         this.mainView.askBTPermissions();
     }
 
-    @Override
-    public void showMessage(String string) {
-        this.mainView.showResultOnLabel(string);
-    }
-
     public void requestPermissions(List<String> listPermissionsNeeded) {
         this.mainView.requestPermissionsToUser(listPermissionsNeeded);
     }

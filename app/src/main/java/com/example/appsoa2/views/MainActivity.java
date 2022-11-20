@@ -76,10 +76,6 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
         this.presenter.getReadyLogic(this);
     }
 
-    private void showToast(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
     private View.OnClickListener btnListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -124,7 +120,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
     @Override
     public void onResume() {
-        showToast("ON Resume!!");
+        showToast("On resume!");
         this.presenter.onResumeProcess();
         super.onResume();
     }
@@ -156,13 +152,28 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
     }
 
     @Override
-    public void showResultOnLabel(String string) {
-        this.txtEstado.setText(string);
+    public void requestPermissionsToUser(List<String> listPermissionsNeeded) {
+        ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), MULTIPLE_PERMISSIONS);
     }
 
     @Override
-    public void requestPermissionsToUser(List<String> listPermissionsNeeded) {
-        ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), MULTIPLE_PERMISSIONS);
+    public void askBTPermissions() {
+        Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        startActivityForResult(intent, 1000);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showResultOnToast(String msg) {
+        showToast(msg);
+    }
+
+    @Override
+    public void showResultOnLabel(String string) {
+        this.txtEstado.setText(string);
     }
 
     @Override
@@ -173,17 +184,6 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
     @Override
     public void showLoadingDialog() {
         mProgressDlg.show();
-    }
-
-    @Override
-    public void askBTPermissions() {
-        Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        startActivityForResult(intent, 1000);
-    }
-
-    @Override
-    public void showResultOnToast(String msg) {
-        showToast(msg);
     }
 
 }

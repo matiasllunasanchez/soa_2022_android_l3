@@ -25,7 +25,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
     private BluetoothDevice primaryDevice = null;
     private BluetoothAdapter mBluetoothAdapter;
     private static final int MULTIPLE_PERMISSIONS = 10; // code you want.
-    private MainPresenter currentPresenter = null;
+    private MainActivityContract.ModelMVP.OnSendToPresenter currentPresenter = null;
     private Context currentContext = null;
     //se crea un array de String con los permisos a solicitar en tiempo de ejecucion
     //Esto se debe realizar a partir de Android 6.0, ya que con verdiones anteriores
@@ -44,7 +44,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
 
 
     @Override
-    public void getReadyBluetooth(Context context, MainPresenter presenter) {
+    public void getReadyBluetooth(Context context, MainActivityContract.ModelMVP.OnSendToPresenter presenter) {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         currentContext = context;
         currentPresenter = presenter;
@@ -66,6 +66,9 @@ public class MainModel implements MainActivityContract.ModelMVP {
 
     @Override
     public void onResumeProcess() {
+        // Tengo el bluetooth prendido?
+        // Tengo el device conectado?
+        // Sino, aviso. Podria intentar conectarlo pero con avisar y entrar conetado ta bien.
         if (primaryDevice == null) {
             if (mBluetoothAdapter == null) {
                 mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -85,7 +88,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
 
     @Override
     public void permissionsGrantedProcess() {
-        enableComponent(); // Now you call here what ever you want :)
+        enableComponent();
         initializeBroadcastReceiver(currentContext);
     }
 
@@ -269,7 +272,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
                     if (currentDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                         this.currentPresenter.showOnLabel("Cortina " + currentDevice.getName() + " ya se encuentra conectada...");
                         pairDevice(currentDevice);
-                        this.currentPresenter.showOnToast("Dispositivo ya cortina conectada!");
+                        this.currentPresenter.showOnToast("Dispositivo ya cortina conectada!!!");
                     } else { // Caso extranio, analizar... Si estoy buscando entre dispositivos conectados y no esta enlazada, deberia ser un error.
                         // Intento reconectarla.
                         pairDevice(currentDevice);
