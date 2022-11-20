@@ -78,5 +78,10 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
     public void onDestroyProcess() {
         this.mainView = null;
     }
+
+    @Override
+    public void consoleLog(String label, String msg) {
+    this.mainView.consoleLog(label,msg);
+    }
 }
 

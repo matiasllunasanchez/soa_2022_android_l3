@@ -8,4 +8,5 @@ public interface BasePresenter {
     void onStopProcess();
     void onRestartProcess();
     void onDestroyProcess();
+    void consoleLog(String label, String msg);
 }

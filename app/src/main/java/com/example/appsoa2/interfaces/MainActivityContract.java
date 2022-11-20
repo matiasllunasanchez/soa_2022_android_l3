@@ -14,6 +14,7 @@ public interface MainActivityContract {
         void closeLoadingDialog();
         void showLoadingDialog();
         void askBTPermissions();
+        void consoleLog(String label, String msg);
     }
 
     interface ModelMVP {
@@ -31,17 +32,14 @@ public interface MainActivityContract {
             void showLoadingDialog();
             void askBTPermission();
             void requestPermissions(List<String> listPermissionsNeeded);
+            void consoleLog(String label, String msg);
         }
 
         void processDataGetResult(MainActivityContract.ModelMVP.OnSendToPresenter presenter);
     }
 
     interface PresenterMVP extends BasePresenter {
-        void onSendButtonClick();
-
         void getReadyLogic(Context context);
-
-        void stopBluetoothSearch();
 
         void permissionsGrantedProcess();
 

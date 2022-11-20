@@ -5,6 +5,7 @@ import com.example.appsoa2.presenters.PrimaryPresenter;
 public interface PrimaryActivityContract {
     interface ViewMVP {
         void setResultValue(int value);
+        void consoleLog(String label, String msg);
     }
 
     interface ModelMVP {

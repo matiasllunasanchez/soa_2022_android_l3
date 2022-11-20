@@ -134,4 +134,9 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
         super.onResume();
     }
 
+    @Override
+    public void consoleLog(String label, String msg) {
+        Log.i(TAG, label+msg);
+    }
+
 }

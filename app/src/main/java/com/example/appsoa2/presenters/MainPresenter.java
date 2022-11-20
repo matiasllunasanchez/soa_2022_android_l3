@@ -19,20 +19,10 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
     }
 
     @Override
-    public void onSendButtonClick() {
-        this.model.processDataGetResult(this);
-    }
-
-    @Override
     public void getReadyLogic(Context currentContext) {
         this.model.getReadyBluetooth(currentContext, this);
     }
-
-    @Override
-    public void stopBluetoothSearch() {
-        this.model.stopBluetoothDiscovery();
-    }
-
+    
     @Override
     public void onCreatedProcess() { }
 
@@ -54,6 +44,11 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
     public void onDestroyProcess() {
         this.model.onDestroyProcess();
         this.mainView = null;
+    }
+
+    @Override
+    public void consoleLog(String label, String msg) {
+    this.mainView.consoleLog(label,msg);
     }
 
     @Override

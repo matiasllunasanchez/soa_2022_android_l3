@@ -95,5 +95,10 @@ public class SecondaryPresenter implements SecondaryActivityContract.ModelMVP.On
     public void onDestroyProcess() {
         this.mainView = null;
     }
+
+    @Override
+    public void consoleLog(String label, String msg) {
+        this.mainView.consoleLog(label,msg);
+    }
 }
 

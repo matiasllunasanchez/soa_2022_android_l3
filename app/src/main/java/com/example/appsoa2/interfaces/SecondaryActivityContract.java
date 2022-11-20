@@ -8,6 +8,7 @@ import com.example.appsoa2.views.SecondaryActivity;
 public interface SecondaryActivityContract {
     interface ViewMVP {
         void setCurrentColor(int value, String hexColor, int codeColor);
+        void consoleLog(String label, String msg);
     }
 
     interface ModelMVP {

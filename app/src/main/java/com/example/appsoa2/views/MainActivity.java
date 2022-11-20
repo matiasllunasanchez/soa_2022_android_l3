@@ -174,7 +174,8 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
     @Override
     public void showResultOnLabel(String msg) {
-        Log.i(TAG, "Mostrar en label: "+msg);
+        // Log.i(TAG, "Mostrar en label: "+msg);
+        consoleLog("Mostrar en label: ", msg);
         this.txtEstado.setText(msg);
     }
 
@@ -188,5 +189,8 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
         mProgressDlg.show();
     }
 
+    public void consoleLog(String label,  String data){
+        Log.i(TAG, label + data);
+    }
 }
 

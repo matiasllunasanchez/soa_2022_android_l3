@@ -132,7 +132,6 @@ public class MainModel implements MainActivityContract.ModelMVP {
     }
 
     private void enableComponent() {
-        // Log.i(TAG, "Click en PRIMARY " + primaryDevice);
         String response = null;
 
         if (mBluetoothAdapter == null) {
@@ -181,8 +180,8 @@ public class MainModel implements MainActivityContract.ModelMVP {
                 this.currentPresenter.showOnLabel(response);
                 this.currentPresenter.showOnToast(response);
                 searchBluetoothDevices();
-            } else {
-                response = "Debes activar el bluetooth para funcionar";
+            } else if(state == BluetoothAdapter.STATE_OFF) {
+                response = "Habilita el bluetooth para continuar...";
                 this.currentPresenter.showOnToast(response);
                 this.currentPresenter.askBTPermission(); // Revisar si vale la pena
             }
@@ -234,6 +233,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
             if (currentDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                 this.currentPresenter.showOnToast("Dispositivo cortina ya conectada!");
                 this.currentPresenter.showOnLabel("Cortina " + currentDevice.getName() + " ya conectada!");
+                pairDevice(currentDevice);
             } else {
                 pairDevice(currentDevice);
             }
@@ -266,11 +266,12 @@ public class MainModel implements MainActivityContract.ModelMVP {
             return false;
         } else {
             for (BluetoothDevice currentDevice : pairedDevices) {
+
                 if (currentDevice.getAddress().equals(MAC_ADDRESS_DEVICE)) {
                     if (currentDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                         this.currentPresenter.showOnLabel("Cortina " + currentDevice.getName() + " ya se encuentra conectada...");
                         pairDevice(currentDevice);
-                        this.currentPresenter.showOnToast("Dispositivo ya cortina conectada!!!");
+                        this.currentPresenter.showOnToast("Paireado de cortina finalizado conectada!!!");
                     } else { // Caso extranio, analizar... Si estoy buscando entre dispositivos conectados y no esta enlazada, deberia ser un error.
                         // Intento reconectarla.
                         pairDevice(currentDevice);
@@ -282,5 +283,4 @@ public class MainModel implements MainActivityContract.ModelMVP {
             return false;
         }
     }
-
 }
