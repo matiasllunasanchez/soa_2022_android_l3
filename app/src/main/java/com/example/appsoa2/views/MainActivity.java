@@ -114,6 +114,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
     @Override
     public void onPause() {
+        showToast("On pause!");
         this.presenter.onPauseProcess();
         super.onPause();
     }
@@ -136,7 +137,6 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
         switch (requestCode) {
             case MULTIPLE_PERMISSIONS: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permissions granted.
                     this.presenter.permissionsGrantedProcess();
                 } else {
                     String perStr = "";
@@ -177,7 +177,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
     }
 
     @Override
-    public void closeDialog() {
+    public void closeLoadingDialog() {
         mProgressDlg.dismiss();
     }
 

@@ -83,7 +83,7 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
 
     @Override
     public void closeLoadingDialog() {
-        this.mainView.closeDialog();
+        this.mainView.closeLoadingDialog();
     }
 
     @Override

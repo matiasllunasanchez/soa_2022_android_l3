@@ -11,7 +11,7 @@ public interface MainActivityContract {
         void showResultOnToast(String message);
         void showResultOnLabel(String message);
         void requestPermissionsToUser(List<String> listPermissionsNeeded);
-        void closeDialog();
+        void closeLoadingDialog();
         void showLoadingDialog();
         void askBTPermissions();
     }

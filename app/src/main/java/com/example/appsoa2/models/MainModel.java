@@ -42,6 +42,13 @@ public class MainModel implements MainActivityContract.ModelMVP {
     // private static String MAC_ADDRESS_DEVICE = "00:21:06:BE:58:58"; // REAL DEVICE - CORTINA HC-05
     private static String MAC_ADDRESS_DEVICE = "14:08:13:06:51:24"; // TEST  - MIBAND DEVICE
 
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            handleBluetoothEvent(intent, action);
+        }
+    };
+
 
     @Override
     public void getReadyBluetooth(Context context, MainActivityContract.ModelMVP.OnSendToPresenter presenter) {
@@ -66,15 +73,15 @@ public class MainModel implements MainActivityContract.ModelMVP {
 
     @Override
     public void onResumeProcess() {
-        // Tengo el bluetooth prendido?
-        // Tengo el device conectado?
-        // Sino, aviso. Podria intentar conectarlo pero con avisar y entrar conetado ta bien.
         if (primaryDevice == null) {
+            // Tengo el device conectado?
             if (mBluetoothAdapter == null) {
+                // Tengo el bluetooth prendido?
                 mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             }
             enableComponent();
         }
+        // Sino, aviso. Podria intentar conectarlo pero con avisar y entrar conetado ta bien.
     }
 
     @Override
@@ -161,13 +168,6 @@ public class MainModel implements MainActivityContract.ModelMVP {
     private void searchBluetoothDevices() {
         mBluetoothAdapter.startDiscovery();
     }
-
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            handleBluetoothEvent(intent, action);
-        }
-    };
 
     private void handleBluetoothEvent(Intent intent, String action) {
         String response = null;
