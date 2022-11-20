@@ -90,7 +90,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
     }
 
     @Override
-    public String getConnnectedMacAddress() {
+    public String getConnectedMacAddress() {
         return this.primaryDevice.getAddress();
     }
 
@@ -161,7 +161,6 @@ public class MainModel implements MainActivityContract.ModelMVP {
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
-            // Atraves del Intent obtengo el evento de Bluethoot que informo el broadcast del SO
             String action = intent.getAction();
             handleBluetoothEvent(intent, action);
         }

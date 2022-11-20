@@ -20,7 +20,7 @@ public interface MainActivityContract {
         void getReadyBluetooth(Context mainActivity, MainPresenter presenter);
         void stopBluetoothDiscovery();
         void permissionsGrantedProcess();
-        String getConnnectedMacAddress();
+        String getConnectedMacAddress();
         void onDestroyProcess();
         void onResumeProcess();
         void onPauseProcess();

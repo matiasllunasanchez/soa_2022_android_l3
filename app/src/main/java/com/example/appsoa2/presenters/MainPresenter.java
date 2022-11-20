@@ -68,7 +68,7 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
 
     @Override
     public String getConnectedDeviceAddress() {
-        return this.model.getConnnectedMacAddress();
+        return this.model.getConnectedMacAddress();
     }
 
     @Override
