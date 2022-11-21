@@ -21,15 +21,12 @@ import java.util.Set;
 
 public class MainModel implements MainActivityContract.ModelMVP {
 
-    // Bluetooth stuff
     private BluetoothDevice primaryDevice = null;
     private BluetoothAdapter mBluetoothAdapter;
     private static final int MULTIPLE_PERMISSIONS = 10; // code you want.
     private MainActivityContract.ModelMVP.OnSendToPresenter currentPresenter = null;
     private Context currentContext = null;
-    //se crea un array de String con los permisos a solicitar en tiempo de ejecucion
-    //Esto se debe realizar a partir de Android 6.0, ya que con verdiones anteriores
-    //con solo solicitarlos en el Manifest es suficiente
+
     String[] permissions = new String[]{
             Manifest.permission.VIBRATE,
             Manifest.permission.BLUETOOTH,
@@ -39,8 +36,8 @@ public class MainModel implements MainActivityContract.ModelMVP {
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.READ_EXTERNAL_STORAGE};
 
-    // private static String MAC_ADDRESS_DEVICE = "00:21:06:BE:58:58"; // REAL DEVICE - CORTINA HC-05
-    private static String MAC_ADDRESS_DEVICE = "14:08:13:06:51:24"; // TEST  - MIBAND DEVICE
+     private static String MAC_ADDRESS_DEVICE = "00:21:06:BE:58:58"; // REAL DEVICE - CORTINA HC-05
+    // private static String MAC_ADDRESS_DEVICE = "14:08:13:06:51:24"; // TEST  - MIBAND DEVICE
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
@@ -180,15 +177,18 @@ public class MainModel implements MainActivityContract.ModelMVP {
                 this.currentPresenter.showOnLabel(response);
                 this.currentPresenter.showOnToast(response);
                 searchBluetoothDevices();
+                this.currentPresenter.enableButtons();
             } else if(state == BluetoothAdapter.STATE_OFF) {
                 response = "Habilita el bluetooth para continuar...";
                 this.currentPresenter.showOnToast(response);
+                this.currentPresenter.disableButtons();
                 this.currentPresenter.askBTPermission(); // Revisar si vale la pena
             }
         }
         else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
             // Arranco a buscar dispositivos
             this.currentPresenter.showLoadingDialog();
+            this.currentPresenter.disableButtons();
         } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
             //Termino de buscar dispositivos
             this.currentPresenter.closeLoadingDialog();
@@ -198,6 +198,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
                 response = "No se encontro cortina disponible";
                 this.currentPresenter.showOnLabel(response);
                 this.currentPresenter.showOnToast(response);
+                this.currentPresenter.disableButtons();
             }
 
         }
@@ -208,9 +209,11 @@ public class MainModel implements MainActivityContract.ModelMVP {
             this.currentPresenter.showOnToast("Dispositivo cercano: " + device.getName());
             if (checkPrimaryDevice(device)) {
                 primaryDevice = device;
-                // finishBluetoothSearch();
+                finishBluetoothSearch();
+                this.currentPresenter.enableButtons();
             }
-        } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
+        } // No se si vale la pena todo lo de abajo.
+        /*else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
             // Obtengo los parametro, aplicando un Bundle, que me indica el estado del Bluethoot
             final int state = intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.ERROR);
             final int prevState = intent.getIntExtra(BluetoothDevice.EXTRA_PREVIOUS_BOND_STATE, BluetoothDevice.ERROR);
@@ -225,7 +228,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
                 this.currentPresenter.showOnToast("Dispositivo desemparejado");
                 primaryDevice = null;
             }
-        }
+        }*/
     }
 
     private boolean checkPrimaryDevice(BluetoothDevice currentDevice) {
@@ -233,7 +236,6 @@ public class MainModel implements MainActivityContract.ModelMVP {
             if (currentDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                 this.currentPresenter.showOnToast("Dispositivo cortina ya conectada!");
                 this.currentPresenter.showOnLabel("Cortina " + currentDevice.getName() + " ya conectada!");
-                pairDevice(currentDevice);
             } else {
                 pairDevice(currentDevice);
             }
@@ -247,7 +249,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
             this.currentPresenter.showOnToast("Cortina cercana... Emparejando...");
             Method method = device.getClass().getMethod("createBond", (Class[]) null);
             method.invoke(device, (Object[]) null);
-            this.currentPresenter.showOnLabel("Cortina " + device.getName() + " conectada!");
+            this.currentPresenter.showOnLabel("Bindeo existoso para dispositivo: " + device.getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -260,17 +262,15 @@ public class MainModel implements MainActivityContract.ModelMVP {
 
     private boolean primaryDeviceIsAlreadyConnected() {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+        this.currentPresenter.consoleLog("Dispositivos ", String.valueOf(pairedDevices));
         if (pairedDevices == null || pairedDevices.size() == 0) {
             this.currentPresenter.showOnToast("No se encontraron dispositivos emparejados");
             this.primaryDevice = null;
-            return false;
         } else {
             for (BluetoothDevice currentDevice : pairedDevices) {
-
                 if (currentDevice.getAddress().equals(MAC_ADDRESS_DEVICE)) {
                     if (currentDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                         this.currentPresenter.showOnLabel("Cortina " + currentDevice.getName() + " ya se encuentra conectada...");
-                        pairDevice(currentDevice);
                         this.currentPresenter.showOnToast("Paireado de cortina finalizado conectada!!!");
                     } else { // Caso extranio, analizar... Si estoy buscando entre dispositivos conectados y no esta enlazada, deberia ser un error.
                         // Intento reconectarla.
@@ -280,7 +280,7 @@ public class MainModel implements MainActivityContract.ModelMVP {
                     return true;
                 }
             }
-            return false;
         }
+        return false;
     }
 }

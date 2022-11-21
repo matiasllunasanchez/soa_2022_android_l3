@@ -22,7 +22,7 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
     public void getReadyLogic(Context currentContext) {
         this.model.getReadyBluetooth(currentContext, this);
     }
-    
+
     @Override
     public void onCreatedProcess() { }
 
@@ -49,6 +49,16 @@ public class MainPresenter implements MainActivityContract.ModelMVP.OnSendToPres
     @Override
     public void consoleLog(String label, String msg) {
     this.mainView.consoleLog(label,msg);
+    }
+
+    @Override
+    public void disableButtons() {
+        this.mainView.disableButtons();
+    }
+
+    @Override
+    public void enableButtons() {
+        this.mainView.enableButtons();
     }
 
     @Override

@@ -15,6 +15,8 @@ public interface MainActivityContract {
         void showLoadingDialog();
         void askBTPermissions();
         void consoleLog(String label, String msg);
+        void disableButtons();
+        void enableButtons();
     }
 
     interface ModelMVP {
@@ -33,6 +35,8 @@ public interface MainActivityContract {
             void askBTPermission();
             void requestPermissions(List<String> listPermissionsNeeded);
             void consoleLog(String label, String msg);
+            void disableButtons();
+            void enableButtons();
         }
 
         void processDataGetResult(MainActivityContract.ModelMVP.OnSendToPresenter presenter);

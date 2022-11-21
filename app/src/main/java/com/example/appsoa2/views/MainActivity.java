@@ -46,6 +46,8 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
     private TextView txtEstado;
     private ProgressDialog mProgressDlg;
+    Button btnPrimary;
+    Button btnSecondary;
 
     public static final int MULTIPLE_PERMISSIONS = 10;
 
@@ -60,8 +62,8 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
     private void initialize() {
 
-        Button btnPrimary = findViewById(R.id.button_primary);
-        Button btnSecondary = findViewById(R.id.button_secondary);
+        btnPrimary = findViewById(R.id.button_primary);
+        btnSecondary = findViewById(R.id.button_secondary);
 
         btnPrimary.setOnClickListener(this.btnListener);
         btnSecondary.setOnClickListener(this.btnListener);
@@ -168,7 +170,7 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
 
     @Override
     public void showResultOnToast(String msg) {
-        Log.i(TAG, "Mostrar en toast: "+msg);
+        Log.i(TAG, "Mostrar en toast: " + msg);
         showToast(msg);
     }
 
@@ -189,8 +191,21 @@ public class MainActivity extends Activity implements MainActivityContract.ViewM
         mProgressDlg.show();
     }
 
-    public void consoleLog(String label,  String data){
+    public void consoleLog(String label, String data) {
         Log.i(TAG, label + data);
     }
+
+    @Override
+    public void disableButtons() {
+        btnPrimary.setEnabled(false);
+        btnSecondary.setEnabled(false);
+    }
+
+    @Override
+    public void enableButtons() {
+        btnPrimary.setEnabled(true);
+        btnSecondary.setEnabled(true);
+    }
+
 }
 

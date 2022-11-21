@@ -12,42 +12,30 @@ public interface SecondaryActivityContract {
     }
 
     interface ModelMVP {
-
         void getReadySensors(Context context);
         void movementDetected(SensorEvent sensorEvent, SecondaryActivityContract.ModelMVP.OnSendToPresenter presenter);
-
         void disconnectBT();
-
         void disconnectSensors(SecondaryActivity secondaryActivity);
-
         void reconnectSensors(SecondaryActivity secondaryActivity);
-
         void getReadyBluetooth(Context context);
-
         void reconnectBluetoothDevice(String address);
-
         void sendLedColorValue(String valueOf);
+        void closeSocket();
+        void generateColor(OnSendToPresenter presenter);
 
         interface OnSendToPresenter {
             void handleShakerResult(int resultColor, int value);
         }
-
-        void generateColor(OnSendToPresenter presenter);
     }
 
-    interface PresenterMVP {
+    interface PresenterMVP extends BasePresenter {
         void shakeEventHandler();
-
         void getReadyLogic(Context context);
-
         void movementDetected(SensorEvent sensorEvent);
-
         void safeDisconnect(SecondaryActivity secondaryActivity);
-
         void getReadyLogicAgain(SecondaryActivity secondaryActivity);
-
         void reconnectDevice(String address);
-
         void sendColorToDevice(String valueOf);
+        void onDestroyProcess();
     }
 }

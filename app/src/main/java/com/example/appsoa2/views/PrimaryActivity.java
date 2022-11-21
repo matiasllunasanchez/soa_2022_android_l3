@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 
 import net.londatiga.android.bluetooth.R;
+
 import com.example.appsoa2.interfaces.PrimaryActivityContract;
 import com.example.appsoa2.presenters.PrimaryPresenter;
 import com.example.appsoa2.views.components.MinMaxFilter;
@@ -45,14 +46,6 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     private EditText inputTextbox;
     private SeekBar seekBarValue;
     private ImageView lampImg;
-
-    // Bluetooth Stuff+
-    private StringBuilder recDataString = new StringBuilder();
-    Handler bluetoothIn;
-    final int handlerState = 0; //used to identify handler message
-    private BluetoothAdapter btAdapter = null;
-    private BluetoothSocket btSocket = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,38 +189,27 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-
     @Override
-    //Cuando se ejecuta el evento onPause se cierra el socket Bluethoot, para no recibiendo datos
     public void onPause() {
         super.onPause();
-
-        try
-        {
-            //Don't leave Bluetooth sockets open when leaving activity
-            btSocket.close();
-        } catch (IOException e2) {
-            //insert code to deal with this
-        }
-
+        this.presenter.onPauseProcess();
     }
 
     @Override
-    //Cada vez que se detecta el evento OnResume se establece la comunicacion con el HC05, creando un
-    //socketBluethoot
+    public void onDestroy() {
+        super.onDestroy();
+        this.presenter.onDestroyProcess();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 
-        Intent intent=getIntent();
-        Bundle extras=intent.getExtras();
-        Log.i(TAG, "Extra recibido de redireccion  "+extras);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
         String macAddress = extras.getString("Direccion_Bluethoot");
-        Log.i(TAG, "Adresss recibida desde PANTALLA MAIN "+macAddress);
         this.presenter.reconnectDevice(macAddress);
     }
-
-
-
 
 
 }

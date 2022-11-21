@@ -72,6 +72,16 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
         this.getCurrentLightLevelFromSE();
     }
 
+    @Override
+    public void closeSocket() {
+        try
+        {
+            btSocket.close();
+        } catch (IOException e2) {
+            Log.i(TAG, "Excepcion  " + e2);
+        }
+    }
+
     private class ConnectedThread extends Thread {
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
@@ -206,5 +216,6 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
     private void getCurrentLightLevelFromSE() {
         mConnectedThread.write(GET_CURRENT_LIGHT_LEVEL + EOF_SEND_MARK_SE);
     }
+
 
 }

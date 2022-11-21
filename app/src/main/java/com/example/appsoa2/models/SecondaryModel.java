@@ -158,7 +158,6 @@ public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
         presenter.handleShakerResult(resultColor, codeColor);
     }
 
-
     private class ConnectedThread extends Thread {
         private final OutputStream mmOutStream;
 
@@ -200,5 +199,15 @@ public class SecondaryModel implements SecondaryActivityContract.ModelMVP {
             }
         }
         return socketResult;
+    }
+
+    @Override
+    public void closeSocket() {
+        try
+        {
+            btSocket.close();
+        } catch (IOException e2) {
+            Log.i(TAG, "Excepcion  " + e2);
+        }
     }
 }

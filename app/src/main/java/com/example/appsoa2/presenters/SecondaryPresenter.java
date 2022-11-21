@@ -94,6 +94,7 @@ public class SecondaryPresenter implements SecondaryActivityContract.ModelMVP.On
     @Override
     public void onDestroyProcess() {
         this.mainView = null;
+        this.model.closeSocket();
     }
 
     @Override

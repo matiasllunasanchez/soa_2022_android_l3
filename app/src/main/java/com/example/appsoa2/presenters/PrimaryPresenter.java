@@ -61,7 +61,7 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
 
     @Override
     public void onPauseProcess() {
-
+        this.model.closeSocket();
     }
 
     @Override
@@ -77,6 +77,7 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
     @Override
     public void onDestroyProcess() {
         this.mainView = null;
+        this.model.closeSocket();
     }
 
     @Override
