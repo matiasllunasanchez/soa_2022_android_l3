@@ -136,6 +136,7 @@ public class SecondaryActivity extends Activity implements SecondaryActivityCont
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         this.presenter.onDestroyProcess();
     }
 
