@@ -32,15 +32,10 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
     private String START_SEND_MARK_SE = "9";
     private final String EOF_SEND_MARK_SE = "#";
     private String GET_CURRENT_LIGHT_LEVEL = "1";
+    private String GET_FINAL_LIGHT_LEVEL = "2";
     private int START_INDEX = 0;
     private int NOT_FOUND_INDEX = -1;
-
-    @Override
-    public void saveLightLevel(PrimaryPresenter primaryPresenter, int i) {
-        this.currentLight = i;
-        Log.i(TAG, "Enviar al SE la luminosidad requierida para la habitacion. Valor de luminosidad en porcentaje: " + i);
-        primaryPresenter.handleSavedResult(i);
-    }
+    private boolean firstAccess = true;
 
     @Override
     public void getReadyBluetooth(PrimaryPresenter presenter) {
@@ -50,12 +45,13 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
 
     @Override
     public void reconnectBluetoothDevice(String macAddress) {
+        Log.i(TAG, "LEYENDO MAC: " + macAddress);
         btSocket = creationSocketByDevice(macAddress);
         mConnectedThread = new ConnectedThread(btSocket);
         Log.i(TAG, "Thread creado: " + mConnectedThread);
         mConnectedThread.start();
         Log.i(TAG, "Thread started  " + mConnectedThread);
-        mConnectedThread.write(GET_CURRENT_LIGHT_LEVEL + EOF_SEND_MARK_SE);
+        mConnectedThread.write(GET_FINAL_LIGHT_LEVEL + EOF_SEND_MARK_SE);
     }
 
     @Override
@@ -69,7 +65,7 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
 
     @Override
     public void getCurrentLightLevel() {
-        this.getCurrentLightLevelFromSE();
+        mConnectedThread.write(GET_CURRENT_LIGHT_LEVEL + EOF_SEND_MARK_SE);
     }
 
     @Override
@@ -155,19 +151,14 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
         return true;
     }
 
-    //Handler que sirve que permite mostrar datos en el Layout al hilo secundario
     private Handler bluetoothMessageHandler_PrimaryThread(final PrimaryPresenter presenter) {
         @SuppressLint("HandlerLeak") Handler handlerObject = new Handler() {
             @SuppressLint("HandlerLeak")
             public void handleMessage(android.os.Message msg) {
-                // Manejo mensaje recibido a travez del Thread secundario
 
                 Log.i(TAG, "Se recibio un dato desde el SE " + msg.obj);
 
-                // Lo unico que recibo es luminosidad actual
-                // Caso para UN mensaje recibido desde el dispositivo.
                 if (msg.what == handlerState) {
-                    //voy concatenando el msj
                     String readMessage = (String) msg.obj;
                     boolean isNumber = isNumericOrEOF(readMessage);
                     Log.i(TAG, "Es numero? :  " + isNumber);
@@ -183,8 +174,16 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
                             recDataString.delete(START_INDEX, recDataString.length());
                             Log.i(TAG, "Rec final a leer:  " + recDataString);
                             Log.i(TAG, "dataInPrint final a leer:  " + dataInPrint);
-                            int currentLightLevel = Integer.parseInt(String.valueOf(dataInPrint));
-                            presenter.saveInputValue(currentLightLevel);
+                            int lightLevelToSet = Integer.parseInt(String.valueOf(dataInPrint));
+
+                            if(firstAccess){
+                                presenter.saveFinalLight(lightLevelToSet);
+                                firstAccess = false;
+                            } else{
+                                presenter.saveCurrentLight(lightLevelToSet);
+                            }
+                            //presenter.saveCurrentLight(lightLevelToSet);
+
                         }
                     }
                 }
@@ -212,10 +211,5 @@ public class PrimaryModel implements PrimaryActivityContract.ModelMVP {
 
         return socketResult;
     }
-
-    private void getCurrentLightLevelFromSE() {
-        mConnectedThread.write(GET_CURRENT_LIGHT_LEVEL + EOF_SEND_MARK_SE);
-    }
-
 
 }

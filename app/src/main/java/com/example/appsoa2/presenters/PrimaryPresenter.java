@@ -15,13 +15,13 @@ public class PrimaryPresenter implements PrimaryActivityContract.ModelMVP.OnSend
     }
 
     @Override
-    public void handleSavedResult(int value) {
-        this.mainView.setResultValue(value);
+    public void saveCurrentLight(int i) {
+        this.mainView.saveCurrentLightLevel( i);
     }
 
     @Override
-    public void saveInputValue(int i) {
-        this.model.saveLightLevel(this, i);
+    public void saveFinalLight(int i) {
+        this.mainView.saveFinalLightLevel(i);
     }
 
     @Override

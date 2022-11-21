@@ -158,11 +158,20 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     }
 
     @Override
-    public void setResultValue(int value) {
-        Log.i(TAG, "Se guardo valor de luz: " + value);
+    public void saveCurrentLightLevel(int value) {
+        Log.i(TAG, "Se guardo valor de luz actual: " + value);
         this.txtCurrentLightLevel.setText("Porcentaje de luz: " + String.valueOf(value) + "%");
         this.setLampLevel(value);
     }
+
+    @Override
+    public void saveFinalLightLevel(int value) {
+        Log.i(TAG, "Se guardo valor de luz deseada: " + value);
+        this.inputTextbox.setText(String.valueOf(value));
+        seekBarValue.setProgress(Integer.parseInt(String.valueOf(value)));
+        this.setLampLevel(value);
+    }
+
 
     @Override
     public void consoleLog(String label, String msg) {
@@ -198,7 +207,7 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
     @Override
     public void onDestroy() {
         super.onDestroy();
-        this.presenter.onDestroyProcess();
+        // this.presenter.onDestroyProcess();
     }
 
     @Override
@@ -210,6 +219,5 @@ public class PrimaryActivity extends Activity implements PrimaryActivityContract
         String macAddress = extras.getString("Direccion_Bluethoot");
         this.presenter.reconnectDevice(macAddress);
     }
-
 
 }
